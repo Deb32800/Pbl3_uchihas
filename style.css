@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: black;
+    color: white;
+  }
+  
+  .landing-body {
+    background: radial-gradient(circle at center, #111, #000);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .landing {
+    text-align: center;
+  }
+  
+  .uchiha-title {
+    font-size: 6rem;
+    font-weight: 900;
+    color: white;
+    transition: 0.4s ease;
+    cursor: pointer;
+  }
+  
+  .uchiha-title:hover {
+    color: #e50914;
+    text-shadow: 0 0 20px #e50914, 0 0 40px #e50914;
+    transform: scale(1.1);
+  }
+  
+  .nav {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    animation: fadeIn 1s ease;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: white;
+    background: #e50914;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 0 0 transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nav a:hover {
+    background: white;
+    color: #e50914;
+    box-shadow: 0 0 20px #e50914;
+    transform: translateY(-3px);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Common Page Style for Other Tabs */
+  .container {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 20px;
+    background: #111;
+    border-left: 6px solid #e50914;
+    border-radius: 10px;
+    color: white;
+    animation: fadeIn 1s ease;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #e50914;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: #ccc;
+  }
+  .home-btn-block {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .home-btn {
+    background-color: #e50914;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .home-btn:hover {
+    background-color: white;
+    color: #e50914;
+    box-shadow: 0 0 20px #e50914;
+    transform: translateY(-3px);
+  }
