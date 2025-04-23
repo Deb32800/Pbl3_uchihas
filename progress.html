@@ -1,17 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Progress Report</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .page {
+      margin-top: 20px;
+    }
+    .home-link {
+      color: #3498db;
+      text-decoration: none;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    h2 {
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 5px;
+    }
+    .content-box {
+      margin-top: 20px;
+    }
+    .week-container {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .week-title {
+      color: #3498db;
+      margin-bottom: 10px;
+    }
+    .week-summary {
+      margin-bottom: 10px;
+    }
+    .full-doc-link {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .full-doc-link:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <section class="page">
     <a class="home-link" href="index.html">← Home</a>
     <h2>Progress Report</h2>
+
     <div class="content-box">
-      <!-- Write your progress content here -->
+
+      <div class="week-container">
+        <h3 class="week-title">Week 1</h3>
+        <p class="week-summary">
+          We brainstormed potential project ideas and finalized the problem statement. After team discussions, we decided to work on a smart parking application. Roles and responsibilities were divided among the group members.
+        </p>
+        <a class="full-doc-link" href="week1.html">See full documentation →</a>
+      </div>
+
+      <div class="week-container">
+        <h3 class="week-title">Week 2</h3>
+        <p class="week-summary">
+          Conducted initial research on existing systems and prepared the proposal. We also created a timeline for development and started collecting datasets for parking availability and historical traffic patterns.
+        </p>
+        <a class="full-doc-link" href="week2.html">See full documentation →</a>
+      </div>
+
+      <!-- Add more weeks below by duplicating the .week-container div -->
+
     </div>
   </section>
 </body>
