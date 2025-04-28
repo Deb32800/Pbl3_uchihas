@@ -79,7 +79,7 @@
     <section id="introduction" class="section">
         <div class="container">
             <h6 class="section-title text-center">Introduction</h6>
-            <p class="text-center">Urban congestion due to limited parking availability is a major challenge in densely populated cities such as Osaka and Tokyo. This project proposes the development of a standalone smart parking guidance application that integrates historical traffic data with real-time parking availability collected through web scraping. By optimizing route recommendations based on both traffic conditions and parking occupancy, the system aims to reduce search time, ease congestion, and support sustainable urban mobility in smart cities.</p>
+            <h7 class="text-center">Urban congestion due to limited parking availability is a major challenge in densely populated cities such as Osaka and Tokyo. This project proposes the development of a standalone smart parking guidance application that integrates historical traffic data with real-time parking availability collected through web scraping. By optimizing route recommendations based on both traffic conditions and parking occupancy, the system aims to reduce search time, ease congestion, and support sustainable urban mobility in smart cities.</h7>
         </div>
     </section>
 
@@ -87,14 +87,13 @@
     <section id="background" class="section">
         <div class="container">
             <h6 class="section-title text-center">Background and Problem Statement</h6>
-            <h7>Parking shortages remain a persistent urban issue in Japan. In major cities such as Osaka, limited on-street parking forces reliance on off-street facilities, often leading to extended searches for available spaces and increased traffic congestion. According to the Ministry of Land, Infrastructure, Transport and Tourism (MLIT), drivers in major Japanese cities spend an average of over 15 minutes searching for parking during peak hours [1]. Although this number does not sound very long, it can definitely be shortened with an introduction of an effective application.</h7>
-		<h7>To combat this issue, there are websites which attempt to update parking information in real time. For example, iPosNet is a website that tries to provide parking availability in real-time, however the reality is poor [10]. Websites like these fail to actually update information in real-time, hence misleading users to believe that certain parking lots are actually open. These websites are actually quite hard to navigate as they simply post the parking information with minimal UI design. Furthermore, these websites do not necessarily contain information that is pivotal for drivers such as the actual route to get to the parking lot. When we take a look at the official parking website for Times [4], it becomes clear that parking information is provided vividly by showing the parking lots on the map. However, the actual route is not provided, and when we consider how narrow and confusing many Japanese streets are, this may be problematic.<br>
-</h7>
-		<h7>Furthermore, an issue that can not be ignored in a country like Japan is the traffic. According to Nashinari Katsuhiro of Tokyo University, the amount of traffic in Japan is so large that its economic damage equates to 1/7 of the national budget [6]. Additionally, according to the Osaka government, there are 327 major traffic congestion points in normal roads, a number higher than many other prefectures [9]. Although traffic is a prominent issue all around Japan, it becomes clear that it is especially bad in a major prefecture such as Osaka as neighboring prefectures in Hyogo and Kyoto have significantly less major traffic congestion points [9]. It is clear that route recommendation applications should not be ignoring these numbers considering how prominent they are. 
+            <h7>Parking shortages remain a persistent urban issue in Japan. In major cities such as Osaka, limited on-street parking forces reliance on off-street facilities, often leading to extended searches for available spaces and increased traffic congestion. According to the Ministry of Land, Infrastructure, Transport and Tourism (MLIT), drivers in major Japanese cities spend an average of over 15 minutes searching for parking during peak hours [1]. Although this number does not sound very long, it can definitely be shortened with an introduction of an effective application.<br><br></h7>
+		<h7>To combat this issue, there are websites which attempt to update parking information in real time. For example, iPosNet is a website that tries to provide parking availability in real-time, however the reality is poor [10]. Websites like these fail to actually update information in real-time, hence misleading users to believe that certain parking lots are actually open. These websites are actually quite hard to navigate as they simply post the parking information with minimal UI design. Furthermore, these websites do not necessarily contain information that is pivotal for drivers such as the actual route to get to the parking lot. When we take a look at the official parking website for Times [4], it becomes clear that parking information is provided vividly by showing the parking lots on the map. However, the actual route is not provided, and when we consider how narrow and confusing many Japanese streets are, this may be problematic.<br><br></h7>
+		<h7>Furthermore, an issue that can not be ignored in a country like Japan is the traffic. According to Nashinari Katsuhiro of Tokyo University, the amount of traffic in Japan is so large that its economic damage equates to 1/7 of the national budget [6]. Additionally, according to the Osaka government, there are 327 major traffic congestion points in normal roads, a number higher than many other prefectures [9]. Although traffic is a prominent issue all around Japan, it becomes clear that it is especially bad in a major prefecture such as Osaka as neighboring prefectures in Hyogo and Kyoto have significantly less major traffic congestion points [9]. It is clear that route recommendation applications should not be ignoring these numbers considering how prominent they are.<br>
 <br></h7>
-		<h7>This inefficient search for parking not only exacerbates traffic congestion but also increases fuel consumption and driver stress. Research by Ponnambalam and Donmez demonstrated that searching for parking significantly elevates drivers' cognitive workload and stress levels, as evidenced by changes in driving behavior, reduced speed, and altered glance patterns during parking searches [2]. Existing navigation systems typically direct users to the nearest parking lot based on distance alone, without factoring in real-time occupancy or traffic conditions. As a result, drivers may arrive at fully occupied facilities, further contributing to unnecessary traffic buildup.<br> </h7>
+		<h7>This inefficient search for parking not only exacerbates traffic congestion but also increases fuel consumption and driver stress. Research by Ponnambalam and Donmez demonstrated that searching for parking significantly elevates drivers' cognitive workload and stress levels, as evidenced by changes in driving behavior, reduced speed, and altered glance patterns during parking searches [2]. Existing navigation systems typically direct users to the nearest parking lot based on distance alone, without factoring in real-time occupancy or traffic conditions. As a result, drivers may arrive at fully occupied facilities, further contributing to unnecessary traffic buildup.<br><br> </h7>
 
-		<h7>Our project aims to address these limitations by offering a smart system that integrates live parking availability with historical traffic data, enabling dynamic route adjustments. Additionally, features such as parking duration tracking will assist users in managing parking time and estimating potential costs, creating a smoother, more efficient parking experience.<br></h7>
+		<h7>Our project aims to address these limitations by offering a smart system that integrates live parking availability with historical traffic data, enabling dynamic route adjustments. Additionally, features such as parking duration tracking will assist users in managing parking time and estimating potential costs, creating a smoother, more efficient parking experience.<br><br></h7>
     </section>
 
     <!-- Vision Section -->
@@ -110,13 +109,13 @@
     <section id="objectives" class="section">
         <div class="container">
             <h6 class="section-title text-center">Objectives</h6>
-            <ul>
+            <h7><ul>
                 <li>Develop a standalone app recommending parking lots based on destination, real-time availability, and historical traffic patterns.</li>
                 <li>Integrate real-time parking data through web scraping and open traffic datasets.</li>
                 <li>Implement dynamic routing algorithms adjusting paths based on conditions.</li>
                 <li>Provide a clear, user-friendly interface.</li>
                 <li>Reduce environmental impact by lowering congestion and idle time.</li>
-            </ul>
+            </ul></h7>
         </div>
     </section>
 
@@ -124,11 +123,11 @@
     <section id="features" class="section">
         <div class="container">
             <h6 class="section-title text-center">Features</h6>
-            <ul>
+           <h7> <ul>
                 <li><b>Real-Time Parking Availability:</b> Updates nearby parking availability using APIs and web scraping.</li>
                 <li><b>Smart Navigation:</b> Dynamic route adjustment based on traffic and parking occupancy.</li>
                 <li><b>Parking Duration Tracking:</b> Track parking time and estimate real-time costs for stress-free departures.</li>
-            </ul>
+            </ul></h7>
         </div>
     </section>
 
@@ -136,13 +135,13 @@
     <section id="methodology" class="section">
         <div class="container">
             <h6 class="section-title text-center">Methodology</h6>
-            <h7>This application will provide optimized routes to available parking lots in real-time, accessible via smartphones for maximum user convenience. Based on research from A. Khanna and R. Anand [3], IoT-based smart parking solutions have successfully employed Apache Cordova to deploy applications on both Android and iOS platforms. Following similar cross-platform strategies ensures wider accessibility.</h7>
+            <h7>This application will provide optimized routes to available parking lots in real-time, accessible via smartphones for maximum user convenience. Based on research from A. Khanna and R. Anand [3], IoT-based smart parking solutions have successfully employed Apache Cordova to deploy applications on both Android and iOS platforms. Following similar cross-platform strategies ensures wider accessibility.<br><br></h7>
 		<h7>Users will be required to share their current location with the application. Upon opening the app, a map will display the user's location along with available nearby parking lots, specifically focusing initially on “Times Parking” facilities operated by Park24 Co., Ltd., which manages over 740,000 parking spaces nationwide [4]. 
-<br></h7>
+<br><br></h7>
 		<h7>The design of the map will be created with the assistance of MapFan API, an API containing necessary information and data for the traffic information in Osaka [8]. Conveniently, the API also provides visual representations of the said traffic, allowing the users to understand which roads are congested at first glance. 
-<br></h7>
+<br><br></h7>
 		<h7>The exact calculation methods for the traffic and parking information is not yet decided. For the traffic information, research done by Mystakidis et al. provided an overview of the plethora of ways we can approach model creation and the effectiveness of each approach [5]. Some methods of calculations that were recommended include gradient boosting and adaboost. Furthermore, a website containing papers as well as the corresponding code that was used for the creation of a traffic prediction model will be used to help us create our own models while minimising potential errors [7]. 
-<br></h7>
+<br><br></h7>
     </section>
 
     <!-- Comparative Analysis Section -->
@@ -152,7 +151,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered text-center">
                     <thead class="thead-dark">
-                        <tr>
+                <h7>  <tr>
                             <th>Feature</th>
                             <th>Our Smart Parking App</th>
                             <th>Traditional Systems</th>
@@ -173,7 +172,7 @@
                             <td>User Experience</td>
                             <td>Navigation + Parking combined</td>
                             <td>Separate apps for navigation and parking search</td>
-                        </tr>
+                        </tr></h7>
                     </tbody>
                 </table>
             </div>
@@ -192,7 +191,7 @@
     <section id="references" class="section">
         <div class="container">
             <h6 class="section-title text-center">References</h6>
-            <ul>
+            <h7><ul>
                 <li>[1] Ministry of Land, Infrastructure, Transport and Tourism (MLIT), "Big City Traffic Census", 2005. <a href="https://www.mlit.go.jp/toukeijouhou/chojou/urban/index.html" target="_blank">Link</a></li>
                 <li>[2] L. Ponnambalam and B. Donmez, "The Effects of Searching for Street Parking on Driver Behavior", Frontiers in Psychology, 2020. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7607006/" target="_blank">Link</a></li>
                 <li>[3] A. Khanna and R. Anand, "IoT based smart parking system", IOTA Conference, 2016.</li>
@@ -208,7 +207,7 @@
 </li>
 		<li>[10]  “駐車場検索ならアイポスネットにおまかせ！！ リアルタイムに満空情報も配信中！！.” iPosNetリアルタイム駐車場情報, search.ipos-land.jp/p/. Accessed 28 Apr. 2025. 
 </li>    
-            </ul>
+            </ul></h7>
         </div>
     </section>
 
