@@ -1,0 +1,40 @@
+name: Run Parking Scraper
+
+on:
+  workflow_dispatch:  # Allows manual trigger from GitHub
+  schedule:
+    - cron: '*/30 * * * *'  # Runs every 30 minutes
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install
+
+      # Step 4: Run scraper
+      - name: Run scraper
+        run: python Scraper.py  # <-- Run your Scraper.py script
+
+      # Step 5: Commit and push the CSV file back to the repository
+      - name: Commit and push CSV file to repo
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github-actions@github.com"
+          git add osaka_parking_data.csv
+          git commit -m "Update parking data"
+          git push origin HEAD:main  # Push changes to the main branch (or whichever branch you prefer)
