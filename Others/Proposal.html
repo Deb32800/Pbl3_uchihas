@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Smart Parking Guidance System Project Proposal">
+    <meta name="author" content="Your Team Name">
+    <title>Smart Parking Guidance | Project Proposal</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + LeadMark main styles -->
+	<link rel="stylesheet" href="assets/css/leadmark.css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/imgs/logo.svg" alt="logo">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">    
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>                 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#introduction">Introduction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#background">Background</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#vision">Vision</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#objectives">Objectives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#methodology">Methodology</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#comparison">Comparative Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#future">Future Work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#references">References</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Of Navigation -->
+
+    <!-- Page Header -->
+    <header class="header">
+        <div class="overlay">
+            <h1 class="subtitle">Smart Parking Navigation System</h1>
+            <h1 class="title">Project Proposal</h1>  
+        </div>  
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
+            </svg>
+        </div>  
+        <div class="mouse-icon"><div class="wheel"></div></div>
+    </header>
+    <!-- End Of Page Header -->
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Introduction</h6>
+            <p class="text-center">Urban congestion due to limited parking availability is a major challenge in densely populated cities such as Osaka and Tokyo. This project proposes the development of a standalone smart parking guidance application that integrates historical traffic data with real-time parking availability collected through web scraping. By optimizing route recommendations based on both traffic conditions and parking occupancy, the system aims to reduce search time, ease congestion, and support sustainable urban mobility in smart cities.</p>
+        </div>
+    </section>
+
+    <!-- Background Section -->
+    <section id="background" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Background and Problem Statement</h6>
+            <p>Parking shortages remain a persistent urban issue in Japan. Limited on-street parking forces reliance on off-street facilities, often leading to extended searches for available spaces and increased traffic congestion. According to MLIT, drivers in major Japanese cities spend an average of over 15 minutes searching for parking during peak hours.</p>
+            <p>This inefficient search exacerbates congestion, increases fuel consumption, and driver stress. Existing navigation systems do not factor in real-time occupancy or traffic conditions, leading to inefficiencies. Our project addresses these gaps with live parking and traffic data integration and smart routing features.</p>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Vision</h6>
+            <p>We aim to create a standalone smart parking application leveraging historical and real-time data to guide drivers efficiently to available spaces, reducing cruising time, minimizing congestion, and contributing to smarter, sustainable cities.</p>
+        </div>
+    </section>
+
+    <!-- Objectives Section -->
+    <section id="objectives" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Objectives</h6>
+            <ul>
+                <li>Develop a standalone app recommending parking lots based on destination, real-time availability, and historical traffic patterns.</li>
+                <li>Integrate real-time parking data through web scraping and open traffic datasets.</li>
+                <li>Implement dynamic routing algorithms adjusting paths based on conditions.</li>
+                <li>Provide a clear, user-friendly interface.</li>
+                <li>Reduce environmental impact by lowering congestion and idle time.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Features</h6>
+            <ul>
+                <li><b>Real-Time Parking Availability:</b> Updates nearby parking availability using APIs and web scraping.</li>
+                <li><b>Smart Navigation:</b> Dynamic route adjustment based on traffic and parking occupancy.</li>
+                <li><b>Parking Duration Tracking:</b> Track parking time and estimate real-time costs for stress-free departures.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Methodology</h6>
+            <p>This application will optimize routes to available parking lots, accessible via smartphones. Following the Apache Cordova deployment model, the app ensures accessibility on Android and iOS platforms. Users share their location and are shown available parking lots nearby, focusing initially on "Times Parking" facilities by Park24 Co., Ltd.</p>
+        </div>
+    </section>
+
+    <!-- Comparative Analysis Section -->
+    <section id="comparison" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Comparative Analysis</h6>
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Feature</th>
+                            <th>Our Smart Parking App</th>
+                            <th>Traditional Systems</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data Intelligence</td>
+                            <td>Live parking + historical traffic data integration</td>
+                            <td>Static or live-only parking information</td>
+                        </tr>
+                        <tr>
+                            <td>Routing</td>
+                            <td>Dynamic routing adjusting for parking availability and traffic</td>
+                            <td>Fixed routes to nearest parking</td>
+                        </tr>
+                        <tr>
+                            <td>User Experience</td>
+                            <td>Navigation + Parking combined</td>
+                            <td>Separate apps for navigation and parking search</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Work Section -->
+    <section id="future" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Future Objectives</h6>
+            <p>Initially focused on Osaka, the project will gradually expand to all 47 prefectures in Japan, requiring multiple parking data sources to cover nationwide availability.</p>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">References</h6>
+            <ul>
+                <li>[1] Ministry of Land, Infrastructure, Transport and Tourism (MLIT), "Big City Traffic Census", 2005. <a href="https://www.mlit.go.jp/toukeijouhou/chojou/urban/index.html" target="_blank">Link</a></li>
+                <li>[2] L. Ponnambalam and B. Donmez, "The Effects of Searching for Street Parking on Driver Behavior", Frontiers in Psychology, 2020. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7607006/" target="_blank">Link</a></li>
+                <li>[3] A. Khanna and R. Anand, "IoT based smart parking system", IOTA Conference, 2016.</li>
+                <li>[4] Times24 Co., Ltd., "Parking lot management track record", Park24 Group, 2023. <a href="https://times-info.net/owner/value/works/" target="_blank">Link</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Core JavaScript -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
+    <script src="assets/js/leadmark.js"></script>
+
+</body>
+</html>
