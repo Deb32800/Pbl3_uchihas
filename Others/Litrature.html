@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Smart Parking Guidance System Project Proposal">
+    <meta name="author" content="Your Team Name">
+    <title>Smart Parking Navigation | Litrature Review</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + LeadMark main styles -->
+	<link rel="stylesheet" href="assets/css/leadmark.css">
+    <style>
+        body {
+            line-height: 2.4; /* Set line spacing to 1.5 */
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="assets/imgs/logo.svg" alt="logo">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">    
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>                 
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Of Navigation -->
+
+    <!-- Page Header -->
+    <header class="header">
+        <div class="overlay">
+            <h1 class="subtitle">Smart Parking Navigation System</h1>
+            <h1 class="title">Litrature Review</h1>  
+        </div>  
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
+            </svg>
+        </div>  
+        <div class="mouse-icon"><div class="wheel"></div></div>
+    </header>
+    <!-- End Of Page Header -->
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Traffic Prediction Model</h6>
+            <h7 class="text-center"> Research for creating traffic prediction models is revolutionary as there has been a plethora of research trying to find the most optimal model. As an example, Yin et al. created a deep learning model for traffic prediction by using a number of methods, ranging from modelling spatial dependency using a CNN to modeling temporal dependencies using RNN. <a href="https://ieeexplore.ieee.org/abstract/document/9352246">[https://ieeexplore.ieee.org/abstract/document/9352246]</a> The research team concluded with many limitations that could be found when using deep learning models for such purposes, such as there being high data demand, high computational complexity, and a lack of interpretability.</h7>
+        </div>
+    </section>
+
+    <!-- Background Section -->
+    <section id="background" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Parking lot Prediction Model</h6>
+            <h7 class="text-center">Parking lot prediction is also a topic with much research being carried out, although available datasets and methods vary vastly. Firstly, parking availability is vague and needs some defining. For some, having one parking slot available is enough for the parking lot to be available, while others may want more for it to be considered an available parking slot. However, research carried out by Rong et al. classifies parking availability nicely with a simple formula where: free parking slots / total parking slots = parking availability <a href="https://dl.acm.org/doi/abs/10.1145/3219819.3219876">[https://dl.acm.org/doi/abs/10.1145/3219819.3219876]</a>. The software will use this definition throughout to discuss parking availability, and will consider anything below 0.15 unavailable, some number between 0.15 to 0.3 as somewhat available, and any number above 0.30 as available. Next, to discuss the actual models, research conducted by Xiao et al. proposed a model with the usage of a continuous-time Markov model for parking. <a href="https://www.sciencedirect.com/science/article/pii/S0191261517301686">[https://www.sciencedirect.com/science/article/pii/S0191261517301686]</a> They claim that this approach is “widely used” in the given context, which convinces us to explore further about the usage of this model.</h7>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Research on Combining Historical Traffic Data with Parking Availability for Route Optimization</h6>
+            <h7 class="text-center">Mohammad et al. proposed a hierarchical algorithm that allocates city parking spaces by combining OpenStreetMap data with traffic simulation using AnyLogic software <a href="https://doi.org/10.1007/s13369-022-07528-4">[https://doi.org/10.1007/s13369-022-07528-4]</a>. Their approach integrates historical traffic trends to dynamically suggest the most optimal parking lot, factoring in distance, road congestion, and estimated arrival time. The study emphasizes how pairing parking occupancy data with traffic congestion forecasts can dramatically improve route efficiency and parking outcomes. While the results demonstrate promise, the paper also discusses challenges such as the reliance on accurate and updated parking datasets and the complexity of simulating dynamic urban environments.</h7>
+        </div>
+    </section>
+
+    <!-- Objectives Section -->
+    <section id="objectives" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Dynamic Parking Allocation Using Real-Time Factors</h6>
+            <h7 class="text-center">Moreover, Abdeen et al. expanded on in-city parking allocation by introducing a multi-variable balancing algorithm that evaluates not only traffic congestion and parking availability but also parking fees and estimated travel time <a href="https://doi.org/10.3390/s21093148">[https://doi.org/10.3390/s21093148]</a>. Focusing on Al Madinah City, their model uses weighted factors to dynamically recommend parking lots to drivers based on individualized optimization criteria. A key strength of their method is its adaptability, allowing for real-time adjustment of recommendations as traffic or parking conditions shift. However, similar to other multi-variable approaches, the paper highlights trade-offs between model complexity, real-time responsiveness, and the computational cost of running continuous optimizations.</h7>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Optimizing Vehicle Routing with Genetic Algorithms</h6>
+            
+                <h7 class="text-center">[1]V. T. N. Nha, S. Djahel, and J. Murphy, “A comparative study of vehicles’ routing algorithms for route planning in smart cities,” IEEE Xplore, Nov. 01, 2012. <a href="https://ieeexplore.ieee.org/abstract/document/6398701">https://ieeexplore.ieee.org/abstract/document/6398701</a>.<br></h7>
+
+                <h7 class="text-center">This study focuses on smart cities' vehicle routes optimisation using genetic algorithms (GAs). GAs generate random routes, score them based on factors like time and fuel efficiency, then find the best ones to create even better solutions. Routes change over generations to reduce emissions or ward against traffic jams. Unlike fixed algorithms, GAs respond to real-time changes (like accidents) and rapidly generate good-enough solutions ideal for changing urban settings when perfect routes are unavailable. Our app’s smart routing can use GAs to balance parking availability, traffic conditions, and distance.</h7>
+
+           
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Forecasting Parking Availability Using LSTM and GRU Models</h6>
+            <h7 class="text-center">[2]J. Arjona, M. Linares, J. Casanovas-Garcia, and J. J. Vázquez, “Improving Parking Availability Information Using Deep Learning Techniques,” Transportation Research Procedia, vol. 47, pp. 385–392, 2020, doi: <a href="https://doi.org/10.1016/j.trpro.2020.03.113">https://doi.org/10.1016/j.trpro.2020.03.113</a>.<br></h7>
+
+            <h7 class="text-center">This study uses LSTM and GRUAI models with memory to forecast parking availability. These models detect trends to alert drivers before spots disappear. GRUs provide equivalent accuracy with less processing difficulty while LSTMs are powerful but sluggish. Building these models and RMSE to assess errors giving priority to major errors. The authors utilize TensorFlow/Keras. The paper’s RMSE metric ensures our predictions penalize big errors, which is important for user trust. This is related to our parking duration tracking feature.</h7>
+        </div>
+    </section>
+
+    <!-- Comparative Analysis Section -->
+    <section id="comparison" class="section">
+        <div class="container">
+            <h6 class="section-title text-center"> Comparative Analysis of Machine Learning Models for Parking Prediction</h6>
+            <h7 class="text-center">[3]F. M. Awan, Y. Saleem, R. Minerva, and N. Crespi, “A Comparative Analysis of Machine/Deep Learning Models for Parking Space Availability Prediction,” Sensors, vol. 20, no. 1, p. 322, Jan. 2020, doi: <a href="https://doi.org/10.3390/s20010322">https://doi.org/10.3390/s20010322</a>.<br></h7>
+
+            <h7 class="text-center">This research compares five machine-learning methods for predicting parking availability. The simple Decision Tree surprisingly outperformed more expensive models by balancing speed and accuracy. In measuring accuracy, the team confirmed results with k-fold cross-validation (stringent testing) and F1 scores. To sum up, sometimes simpler artificial intelligence works better, especially when cities without supercomputers need real-time parking updates. Our system can use Decision Trees to process live parking data efficiently without heavy computational costs.</h7>
+        </div>
+    </section>
+
+   
+
+    <!-- Core JavaScript -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
+    <script src="assets/js/leadmark.js"></script>
+
+</body>
+</html>
