@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="NavPark - Smart Parking Guidance System Project Proposal">
+    <meta name="author" content="Your Team Name">
+    <title>NavPark | System Design Document</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + LeadMark main styles -->
+	<link rel="stylesheet" href="assets/css/leadmark.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <!-- Using your provided logo placeholder -->
+                <img src="assets/imgs/logo.svg" alt="NavPark Logo">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">    
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#introduction">Introduction</a>
+                    </li>                 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#arch">System Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#context">Context Model</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#CD">Class Diagram</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#interact">Interaction Scenarios</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Of Navigation -->
+
+    <!-- Page Header -->
+    <header class="header">
+        <div class="overlay">
+            <h1 class="subtitle">NavPark: A Predictive Parking Solution</h1>
+            <h1 class="title">System Design Document</h1>  
+        </div>  
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
+            </svg>
+        </div>  
+        <div class="mouse-icon"><div class="wheel"></div></div>
+    </header>
+    <!-- End Of Page Header -->
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Introduction</h6>
+            <p class="text-center">Navigating dense urban areas like Hong Kong’s Yau Tsim Mong district presents a significant challenge for drivers, primarily due to the difficulty of finding available parking. This contributes to traffic congestion, increased emissions, and driver stress. <strong>NavPark</strong> is designed to mitigate these issues by transforming the parking experience from a game of chance into a predictable, streamlined process.</p>
+            <p class="text-center mt-4">This document is a system design document for NavPark. The document contains a system diagram which explains the,  a class diagram to show the relationships between the classes in the system, sequence diagrams which show the flows of the application, a context diagram to show the the external interactions, and use case and activity diagrams for each user functional requirements defined in the Requirements Engineering document. 
+</p>
+        </div>
+    </section>
+
+    <!-- architecture Section -->
+    <section id="arch" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">System Architecture</h6>
+            <p class="text-center">NavPark's architecture is designed as a scalable, service-oriented system to ensure high performance and maintainability, capable of handling up to 10,000 concurrent users. The system is logically divided into three distinct layers, each with a specialized role in delivering our predictive parking service.</p>
+            
+            <div class="row mt-5">
+                <div class="col-md-10 mx-auto">
+                    <img src="assets/imgs/system-architecture-diagram.png" alt="System Architecture Diagram" class="img-fluid rounded shadow-sm">
+                    <p class="text-center mt-3 font-italic">Figure 1: High-Level System Architecture</p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <p>The architecture is comprised of the following layers:</p>
+                    <ul>
+                        <li><strong>Data Acquisition Layer:</strong> This layer is responsible for ingesting all external data. Its primary source is the Hong Kong Government's public data API, which provides real-time and historical parking vacancy information. It also integrates with external mapping services for traffic data, which is used to generate the color-coded congestion layer on the map.</li>
+                        <li><strong>Backend & Processing Layer:</strong> This is the backend of NavPark. This layer's responsibilities include:
+                            <ul>
+                                <li><strong>Data Processing:</strong> Aggregating and Processing incoming data from the acquisition layer.</li>
+                                <li><strong>Prediction Model:</strong> Running a machine learning model that uses historical data to forecast parking availability with ≥70% accuracy for the next two hours.</li>
+                                <li><strong>API Server:</strong> Exposing a secure API for the client application to fetch data, manage user profiles, and handle requests.</li>
+                                <li><strong>Database Management:</strong> Storing user account and preferences data, parking lot information, and historical datasets.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Application Layer:</strong> The user-facing component, consisting of the NavPark application for iOS and Android. It provides an intuitive, one-handed use interface featuring an interactive map with color-coded <strong>Availability States</strong> (green, yellow, red), multiple destination input methods, and seamless integration with external map APIs for turn-by-turn navigation.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Context Model Section -->
+    <section id="context" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Context Model</h6>
+            <p class="lead text-center">We aim to create a standalone smart parking application leveraging historical data to predict precisely and guide drivers efficiently to available parking spaces near the destination, reducing cruising time, minimizing congestion, and contributing to smarter, sustainable cities.</p>
+            <p class="text-center mt-4">The System Context Diagram below defines NavPark's operational boundaries and its interactions with external entities. This model clarifies the data flows and dependencies that are critical to the system's functionality.</p>
+            
+            <div class="row mt-5">
+                <div class="col-md-10 mx-auto">
+                    <img src="../Others/images/context.jpeg" alt="System Context Diagram for NavPark" class="img-fluid rounded shadow-sm">
+                    <p class="text-center mt-3 font-italic">Figure 2: NavPark System Context Diagram</p>
+                </div>
+            </div>
+            <div class="row mt-4">
+    <div class="col-md-12">
+        <p>The main external and internal components interacting with the Smart Parking System are:</p>
+        <ul>
+            <li><strong>User Account System:</strong> Manages user login and preferences such as walking distance, EV charging needs, and cost sensitivity. These preferences are used by the Recommendation Model to personalize suggestions.</li>
+            <li><strong>Routing System (OpenStreetMap API):</strong> Generates optimal routes from the user's location to the selected parking spot. Provides ETA data which is used by the Prediction Model to forecast availability.</li>
+            <li><strong>Prediction Model:</strong> Uses historical parking and traffic data to predict availability of parking spots at the user's estimated arrival time. It does not use live traffic data.</li>
+            <li><strong>Recommendation Model:</strong> Filters and ranks parking options based on predicted availability, user preferences, and proximity, ensuring the most relevant parking options are shown.</li>
+            <li><strong>Traffic Prediction Model:</strong> Analyzes historical traffic flow patterns to help the Prediction Model improve the accuracy of availability forecasts. It does not use live traffic feeds.</li>
+            <li><strong>Map System:</strong> Displays an interactive map interface with base map tiles, route lines, traffic zones, and parking spot markers, helping users visually explore and select parking options.</li>
+        </ul>
+    </div>
+    </div>
+        </div>
+    
+    </section>
+
+        <!-- Class Diagram Section -->
+    <section id="CD" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Class Diagram</h6>
+            <p class="text-center">This diagram provides a static, structural view of the NavPark system. It outlines the key classes, their attributes, methods, and the relationships (associations) between them. This model serves as the blueprint for the system's object-oriented design and backend development.</p>
+
+            <!-- The Diagram Image -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <img src="../Others/images/Class.png" alt="NavPark System Class Diagram" class="img-fluid rounded shadow-sm border">
+                    
+                    <p class="text-center mt-3 font-italic">Figure 3: NavPark System Class Diagram</p>
+                </div>
+            </div>
+
+            <!-- The Class Descriptions Table -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h4 class="text-center mb-4">Class Descriptions</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Class Name</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Role Explanation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>User</strong></td>
+                                    <td>Entity</td>
+                                    <td>Stores user info (credentials, car info), settings, and preferences.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Preferences</strong></td>
+                                    <td>Entity</td>
+                                    <td>Holds specific user settings like notification toggles, preferred price ranges, max walking distance, and language.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ParkingLot</strong></td>
+                                    <td>Entity</td>
+                                    <td>Represents a physical parking lot, storing its location, fee structure, hours, and real-time/predicted availability.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Route</strong></td>
+                                    <td>Abstract</td>
+                                    <td>A base class defining common properties and methods for all types of routes (e.g., start point, end point).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>DrivingRoute</strong></td>
+                                    <td>Control</td>
+                                    <td>A concrete class that handles vehicle routing logic, integrating with the traffic overlay to calculate travel time.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>WalkingRoute</strong></td>
+                                    <td>Control</td>
+                                    <td>A concrete class that handles pedestrian routing from a selected parking lot to the user's final destination.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TrafficOverlay</strong></td>
+                                    <td>Entity</td>
+                                    <td>Represents traffic data for a map area. Used by the MapInterface to display congestion levels with color coding.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PredictionModel</strong></td>
+                                    <td>Abstract</td>
+                                    <td>Defines the base interface for all prediction logic, ensuring they have a common method (e.g., `predict()`).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ParkingPrediction</strong></td>
+                                    <td>Concrete</td>
+                                    <td>A concrete model implementation that predicts parking lot vacancy based on historical data and real-time events.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TrafficPrediction</strong></td>
+                                    <td>Concrete</td>
+                                    <td>A concrete model implementation that predicts future traffic congestion levels based on past data and known events.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>MapInterface</strong></td>
+                                    <td>Boundary</td>
+                                    <td>The primary UI component responsible for rendering the interactive map, displaying routes, parking lots, and overlays.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>NotificationService</strong></td>
+                                    <td>Control</td>
+                                    <td>Manages the logic and delivery of push notifications (e.g., availability changes, departure reminders) to the user's device.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>AuthService</strong></td>
+                                    <td>Control</td>
+                                    <td>Handles all authentication and authorization tasks, such as user login, registration, and session management.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PreferencesService</strong></td>
+                                    <td>Control</td>
+                                    <td>A service responsible for loading, saving, and managing a user's preferences from the database.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- interaction Section -->
+    <section id="interact" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Interaction Scenarios</h6>
+            <p class="text-center">This section provides a detailed breakdown of each functional requirement, with a dedicated Use Case and Activity Diagram for every sub-point to model the system's behavior with maximum granularity.</p>
+
+            <!-- Functional Requirements Overview Table -->
+            <div class="table-responsive mb-5">
+                <table class="table table-bordered table-striped text-center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Associated FR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Interactive Map</td>
+                            <td>Users shall be able to view and interact with an interactive map.</td>
+                            <td><a href="#fr1">FR 1</a></td>
+                        </tr>
+                        <tr>
+                            <td>Visual Availability</td>
+                            <td>Users shall be able to visually understand parking availability and legend.</td>
+                            <td><a href="#fr2">FR 2</a></td>
+                        </tr>
+                        <tr>
+                            <td>Destination Input</td>
+                            <td>Users shall be able to input their location or destination using various methods.</td>
+                            <td><a href="#fr3">FR 3</a></td>
+                        </tr>
+                        <tr>
+                            <td>Parking and Route Display</td>
+                            <td>The map shall display nearby parking lots and recommend optimized routes.</td>
+                            <td><a href="#fr4">FR 4</a></td>
+                        </tr>
+                        <tr>
+                            <td>Parking Lot Details</td>
+                            <td>Users shall be able to view comprehensive detailed information about each parking lot.</td>
+                            <td><a href="#fr5">FR 5</a></td>
+                        </tr>
+                        <tr>
+                            <td>App Customization</td>
+                            <td>Users shall be able to customize app behavior and display preferences.</td>
+                            <td><a href="#fr6">FR 6</a></td>
+                        </tr>
+                        <tr>
+                            <td>Account Creation</td>
+                            <td>Users shall be able to create an account, requiring specific personal and car details.</td>
+                            <td><a href="#fr7">FR 7</a></td>
+                        </tr>
+                        <tr>
+                            <td>Schedule Navigation</td>
+                            <td>Users shall be able to schedule navigation and receive time-based parking recommendations.</td>
+                            <td><a href="#fr8">FR 8</a></td>
+                        </tr>
+                        <tr>
+                            <td>Notifications</td>
+                            <td>Users shall be notified when important information or changes occur.</td>
+                            <td><a href="#fr9">FR 9</a></td>
+                        </tr>
+                        <tr>
+                            <td>Provide Feedback</td>
+                            <td>Users shall be able to provide feedback on various aspects of the app.</td>
+                            <td><a href="#fr10">FR 10</a></td>
+                        </tr>
+                        <tr>
+                            <td>Privacy Configuration</td>
+                            <td>Users shall be able to configure their privacy settings.</td>
+                            <td><a href="#fr11">FR 11</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 1: Users shall be able to see an interactive map when they open the application. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr1">
+            <h5 class="text-center mb-4">FR 1: Users shall be able to see an interactive map when they open the application.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver opening the app and viewing the interactive map interface.</p>
+                    <img src="../Others/images/FR1_uc.png" alt="Use Case for FR 1" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the flow from app launch to displaying the interactive map to the user.</p>
+                    <img src="../Others/images/FR1_AC.png" alt="Activity Diagram for FR 1" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 1.1: Users shall be able to interact with parking lots on the map to view detailed information. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 1.1: Users shall be able to interact with parking lots on the map to view detailed information.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver tapping a parking lot icon to view detailed information about that parking lot.</p>
+                    <img src="../Others/images/FR1.1_uc.png" alt="Use Case for FR 1.1" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the flow from the user tapping a parking lot icon to the system displaying a detailed information panel.</p>
+                    <img src="../Others/images/FR1.1_ACpng.png" alt="Activity Diagram for FR 1.1" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 1.2: The system shall display roads in different colors—grey, orange, and green—to indicate varying traffic conditions. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 1.2: The system shall display roads in different colors—grey, orange, and green—to indicate varying traffic conditions.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver viewing the map with roads color-coded to indicate current traffic conditions.</p>
+                    <img src="../Others/images/FR1.2_uc.png" alt="Use Case for FR 1.2" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Models the system fetching traffic data and rendering roads in grey, orange, or green based on traffic status.</p>
+                    <img src="../Others/images/FR1.2_AC.png" alt="Activity Diagram for FR 1.2" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 2: Users shall be able to visually understand parking availability using a color-coded system (green, yellow, red). -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr2">
+            <h5 class="text-center mb-4">FR 2: Users shall be able to visually understand parking availability using a color-coded system (green, yellow, red).</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver viewing parking lots on the map with color codes representing availability (green, yellow, red).</p>
+                    <img src="../Others/images/FR2_uc.png" alt="Use Case for FR 2" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the system assigning and displaying color codes to parking lots based on real-time availability.</p>
+                    <img src="../Others/images/FR2_AC.png" alt="Activity Diagram for FR 2" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 2.1: Users shall be able to view a legend explaining the color codes for both traffic and parking availability. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 2.1: Users shall be able to view a legend explaining the color codes for both traffic and parking availability.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver accessing a legend to understand the meaning of map color codes for traffic and parking.</p>
+                    <img src="../Others/images/FR2.1_uc.png" alt="Use Case for FR 2.1" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Outlines the steps of the user tapping a legend icon or button, and the system displaying the legend overlay.</p>
+                    <img src="../Others/images/FR2.1_AC.png" alt="Activity Diagram for FR 2.1" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 3: Users shall be able to input their current location or travel destination using various methods. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr3">
+            <h5 class="text-center mb-4">FR 3: Users shall be able to input their current location or travel destination using various methods.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver choosing from multiple methods to input their location or destination (GPS, pin, address, voice, or saved places).</p>
+                    <img src="../Others/images/FR3_uc.png" alt="Use Case for FR 3" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the flow of the user selecting a location input method and the system processing the input accordingly.</p>
+                    <img src="../Others/images/FR3_AC.png" alt="Activity Diagram for FR 3" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 3.1: Enable GPS-based location detection. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 3.1: Enable GPS-based location detection.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver using the GPS feature to automatically detect their current location.</p>
+                    <img src="../Others/images/FR3.1_uc.png" alt="Use Case for FR 3.1" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the flow of the app requesting location permissions, accessing the device GPS, and centering the map on the user's current location.</p>
+                    <img src="../Others/images/FR3.1_AC.png" alt="Activity Diagram for FR 3.1" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 3.2: Allow users to place a marker (drop a pin) on the map. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 3.2: Allow users to place a marker (drop a pin) on the map.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver dropping a pin on the map to set a custom location or destination.</p>
+                    <img src="../Others/images/FR3.2_uc.png" alt="Use Case for FR 3.2" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user placing a marker and the system updating the selected location.</p>
+                    <img src="../Others/images/FR3.2_AC.png" alt="Activity Diagram for FR 3.2" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 3.3: Allow users to enter a location or destination via address input. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 3.3: Allow users to enter a location or destination via address input.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver entering an address to set their location or destination.</p>
+                    <img src="../Others/images/FR3.3_uc.png" alt="Use Case for FR 3.3" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user typing an address and the system geocoding it to a map location.</p>
+                    <img src="../Others/images/FR3.3_AC.png" alt="Activity Diagram for FR 3.3" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 3.4: Allow users to input their location using voice commands. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 3.4: Allow users to input their location using voice commands.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver using a voice command to set their location or destination.</p>
+                    <img src="../Others/images/FR3.4_uc.png" alt="Use Case for FR 3.4" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user speaking a location and the system recognizing and setting it on the map.</p>
+                    <img src="../Others/images/FR3.4_AC.png" alt="Activity Diagram for FR 3.4" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 3.5: Users shall be able to save frequently visited destinations for quick access. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 3.5: Users shall be able to save frequently visited destinations for quick access.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver saving a destination for quick access in the future.</p>
+                    <img src="../Others/images/FR3.5_uc.png" alt="Use Case for FR 3.5" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user saving a location and the system making it available for quick selection later.</p>
+                    <img src="../Others/images/FR3.5_AC.png" alt="Activity Diagram for FR 3.5" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 4: After a destination is input, the map shall zoom in on that area and display all parking lots within a 500-meter radius, recommend an optimized route, and show the shortest path to the nearest parking lot. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr4">
+            <h5 class="text-center mb-4">FR 4: After a destination is input, the map shall zoom in on that area and display all parking lots within a 500-meter radius, recommend an optimized route, and show the shortest path to the nearest parking lot.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver inputting a destination, the system zooming in, displaying nearby parking lots, and recommending both an optimized route and the shortest path to the nearest available parking lot.</p>
+                    <img src="../Others/images/FR4_uc.png" alt="Use Case for FR 4" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the flow from destination input, map zoom, fetching parking lots, and displaying both the recommended and shortest routes.</p>
+                    <img src="../Others/images/FR4_AC.png" alt="Activity Diagram for FR 4" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 5: Users shall be able to view detailed information about each parking lot, including opening hours, parking costs, expected availability, and estimated travel time. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr5">
+            <h5 class="text-center mb-4">FR 5: Users shall be able to view detailed information about each parking lot, including opening hours, parking costs, expected availability, and estimated travel time.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver selecting a parking lot to view its opening hours, costs, expected availability by hour, and estimated travel time from their location.</p>
+                    <img src="../Others/images/FR5_uc.png" alt="Use Case for FR 5" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user selecting a parking lot and the system displaying all relevant details.</p>
+                    <img src="../Others/images/FR5_AC.png" alt="Activity Diagram for FR 5" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 6: Users shall be able to customize app behavior and display (price range, distance, notifications, language). -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr6">
+            <h5 class="text-center mb-4">FR 6: Users shall be able to customize app behavior and display, including preferred price range, distance, notifications, and language.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver accessing settings to set preferred price range, distance from destination, notification preferences, and interface language.</p>
+                    <img src="../Others/images/FR6_uc.png" alt="Use Case for FR 6" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the flow of the user customizing app settings and the system applying these preferences.</p>
+                    <img src="../Others/images/FR6_AC.png" alt="Activity Diagram for FR 6" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 7: Users shall be able to create an account with required information and agree to terms. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr7">
+            <h5 class="text-center mb-4">FR 7: Users shall be able to create an account requiring a username, phone number, password, car information, and agreement to terms and conditions.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver registering an account, providing required information, and agreeing to terms and conditions regarding data collection.</p>
+                    <img src="../Others/images/FR7_uc.png" alt="Use Case for FR 7" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the registration process, including data entry and terms acceptance.</p>
+                    <img src="../Others/images/FR7_AC.png" alt="Activity Diagram for FR 7" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 8: Users shall be able to schedule navigation to begin at a selected time and input a future arrival time. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr8">
+            <h5 class="text-center mb-4">FR 8: Users shall be able to schedule navigation to begin at a selected time and input a future arrival time to receive parking recommendations.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver scheduling navigation or inputting a future arrival time to get parking recommendations and set a delayed start.</p>
+                    <img src="../Others/images/FR8_uc.png" alt="Use Case for FR 8" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the process of scheduling navigation and the system providing recommendations based on the selected time.</p>
+                    <img src="../Others/images/FR8_AC.png" alt="Activity Diagram for FR 8" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 9: Users shall be notified when important information needs reporting (parking lot full, availability changes, closer lot, better route). -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr9">
+            <h5 class="text-center mb-4">FR 9: Users shall be notified when important information needs reporting, such as parking lot status, availability changes, closer lots, or better routes.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver receiving notifications for events like a parking lot becoming full, availability changes, a closer lot opening, or a better route being found.</p>
+                    <img src="../Others/images/FR9_uc.png" alt="Use Case for FR 9" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the system monitoring parking and traffic data and sending timely notifications to the user.</p>
+                    <img src="../Others/images/FR9_AC.png" alt="Activity Diagram for FR 9" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 9.5: Users shall be notified when the scheduled departure time has been reached. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 9.5: Users shall be notified when the scheduled departure time has been reached.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver receiving a notification when it is time to depart as scheduled.</p>
+                    <img src="../Others/images/FR9.5_uc.png" alt="Use Case for FR 9.5" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the system tracking the scheduled time and notifying the user when it is reached.</p>
+                    <img src="../Others/images/FR9.5_AC.png" alt="Activity Diagram for FR 9.5" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 9.6: Users shall receive a summary notification when they arrive at the parking lot. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 9.6: Users shall receive a summary notification when they arrive at the parking lot.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver receiving a summary notification upon arrival at the parking lot.</p>
+                    <img src="../Others/images/FR9.6_uc.png" alt="Use Case for FR 9.6" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the system detecting arrival and sending a summary notification to the user.</p>
+                    <img src="../Others/images/FR9.6_AC.png" alt="Activity Diagram for FR 9.6" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 10: Users shall be able to provide feedback about the app, including incorrect traffic or parking information, parking lot details, and feature suggestions. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr10">
+            <h5 class="text-center mb-4">FR 10: Users shall be able to provide feedback about the app, including incorrect traffic or parking information, parking lot details, and feature suggestions.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver submitting feedback through the app interface.</p>
+                    <img src="../Others/images/FR10_uc.png" alt="Use Case for FR 10" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user entering feedback and the system confirming receipt.</p>
+                    <img src="../Others/images/FR10_AC.png" alt="Activity Diagram for FR 10" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 11: Users shall be able to configure privacy settings to their own likings. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr11">
+            <h5 class="text-center mb-4">FR 11: Users shall be able to configure privacy settings to their own likings.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver accessing privacy settings to manage account, history, password, and GPS preferences.</p>
+                    <img src="../Others/images/FR11_uc.png" alt="Use Case for FR 11" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user configuring privacy options and the system applying these changes.</p>
+                    <img src="../Others/images/FR11_AC.png" alt="Activity Diagram for FR 11" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 11.2: Users shall be able to request the deletion of their account. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 11.2: Users shall be able to request the deletion of their account.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver requesting account deletion for privacy reasons.</p>
+                    <img src="../Others/images/FR11.2_uc.png" alt="Use Case for FR 11.2" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user requesting account deletion and the system processing the request.</p>
+                    <img src="../Others/images/FR11.2_AC.png" alt="Activity Diagram for FR 11.2" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 11.3: Users shall be able to change their passwords with ease. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 11.3: Users shall be able to change their passwords with ease.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver changing their account password through the app interface.</p>
+                    <img src="../Others/images/FR11.3_uc.png" alt="Use Case for FR 11.3" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user updating their password and the system confirming the change.</p>
+                    <img src="../Others/images/FR11.3_AC.png" alt="Activity Diagram for FR 11.3" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 11.4: Users shall have the option to turn their GPS on only when the app is open. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 11.4: Users shall have the option to turn their GPS on only when the app is open.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver configuring GPS settings to enable location tracking only while using the app.</p>
+                    <img src="../Others/images/FR11.4_uc.png" alt="Use Case for FR 11.4" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user setting GPS permissions and the system enforcing this preference.</p>
+                    <img src="../Others/images/FR11.4_AC.png" alt="Activity Diagram for FR 11.4" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Core JavaScript -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
+    <script src="assets/js/leadmark.js"></script>
+
+</body>
+</html>
