@@ -79,6 +79,35 @@
         </div>
     </section>
 
+    <!-- Version History Table -->
+    <section id="version-history" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Version History</h6>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <table class="table table-bordered table-striped text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Version</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.0</td>
+                                <td>Completed each individually assigned UML diagrams</td>
+                            </tr>
+                            <tr>
+                                <td>1.1</td>
+                                <td>Finalized the UMLs and made everything consistent.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- architecture Section -->
     <section id="arch" class="section">
         <div class="container">
@@ -758,7 +787,62 @@
         </div>
     </section>
 
-    
+    <!-- Sequence Diagram Section -->
+    <section id="sequence-diagrams" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Sequence Diagrams</h6>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h5 class="mb-3">Route Navigation</h5>
+                    <p>The diagram shows NavPark's route navigation flow. The user inputs a destination, triggering the system to fetch parking availability predictions and traffic data. NavPark then calculates the optimal route using these inputs, supported by prediction models and map data, ensuring efficient navigation with parking considerations.</p>
+                    <div class="text-center">
+                        <img src="../Others/images/routenav_SQ.png" alt="Route Navigation Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Route Navigation</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h5 class="mb-3">Scheduled Departure with Notification Reminder</h5>
+                    <p>The diagram shows NavPark's scheduled departure reminder feature. The user inputs a departure time, prompting NavPark to schedule a reminder and set a push notification 10 minutes before departure. The Time Scheduler (Notification Center) handles the timed notification delivery to remind the user when to leave.</p>
+                    <div class="text-center">
+                        <img src="../Others/images/schdep_SQ.png" alt="Scheduled Departure Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Scheduled Departure Reminder</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h5 class="mb-3">Future Vacancy Prediction</h5>
+                    <p>The diagram illustrates NavPark's future vacancy prediction feature. The user inputs an arrival time, triggering NavPark to predict parking availability and traffic conditions for that future time. The system then displays the predicted parking lots and traffic data to the user, leveraging the Parking Lot Prediction Model and Traffic Prediction Model for accurate forecasts.</p>
+                    <div class="text-center">
+                        <img src="../Others/images/Future_SQ.png" alt="Future Vacancy Prediction Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Future Vacancy Prediction</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h5 class="mb-3">Arrival Notification</h5>
+                    <p>The diagram shows NavPark's arrival notification flow. When the user starts navigation, NavPark tracks their location via GPS. Upon detecting arrival near a parking lot, it triggers an arrival notification through the Notification Center, which then sends a summary to the user.</p>
+                    <div class="text-center">
+                        <img src="../Others/images/Arrnot_SQ.png" alt="Arrival Notification Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Arrival Notification</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h5 class="mb-3">Parking Lot Profile</h5>
+                    <p>This diagram illustrates the Parking Lot Profile feature. When a user clicks on a parking lot, NavPark returns the detailed information for that specific parking lot, including availability, pricing, hours, and other relevant details.</p>
+                    <div class="text-center">
+                        <img src="../Others/images/parkingLotProfile.png" alt="Parking Lot Profile Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Parking Lot Profile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Core JavaScript -->
     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>

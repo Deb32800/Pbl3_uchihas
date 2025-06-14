@@ -3,9 +3,9 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Smart Parking Guidance System Project Proposal">
+    <meta name="description" content="NavPark Project Proposal">
     <meta name="author" content="Your Team Name">
-    <title>Smart Parking Navigation | Project Proposal</title>
+    <title>NavPark | Project Proposal</title>
     <!-- font icons -->
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + LeadMark main styles -->
@@ -40,6 +40,9 @@
                         <a class="nav-link" href="#objectives">Objectives</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#stakeholders">Stakeholders</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#features">Features</a>
                     </li>
                     <li class="nav-item">
@@ -63,7 +66,7 @@
     <!-- Page Header -->
     <header class="header">
         <div class="overlay">
-            <h1 class="subtitle">Smart Parking Navigation System</h1>
+            <h1 class="subtitle">NavPark</h1>
             <h1 class="title">Project Proposal</h1>  
         </div>  
         <div class="shape">
@@ -79,7 +82,7 @@
     <section id="introduction" class="section">
         <div class="container">
             <h6 class="section-title text-center">Introduction</h6>
-            <h7 class="text-center">Urban congestion due to limited parking availability is a major challenge in densely populated cities such as Osaka and Tokyo. This project proposes the development of a standalone smart parking guidance application that integrates historical traffic data with real-time parking availability collected through web scraping. By optimizing route recommendations based on both traffic conditions and parking occupancy, the system aims to reduce search time, ease congestion, and support sustainable urban mobility in smart cities.</h7>
+            <p class="text-center">Limited parking availability is a pressing issue in densely populated cities around the world, and is especially noticeable in a highly dense city like Hong Kong. The issue leads to drivers being unable to park their cars consistently, affecting everyday life and the transport sector. Hence, this project proposes the development of a smart parking guidance application that leverages historical traffic data with real-time parking availability from government-certified open datasets. The system aims to reduce search time and support sustainable urban mobility in smart cities by displaying context-aware parking information.</p>
         </div>
     </section>
 
@@ -87,16 +90,10 @@
     <section id="background" class="section">
         <div class="container">
             <h6 class="section-title text-center">Background and Problem Statement</h6>
-            <h7>Parking shortages remain a persistent urban issue in Japan. In major cities such as Osaka, limited on-street parking forces reliance on off-street facilities, often leading to extended searches for available spaces and increased traffic congestion. According to the Ministry of Land, Infrastructure, Transport and Tourism (MLIT), drivers in major Japanese cities spend an average of over 15 minutes searching for parking during peak hours [1]. Although this number does not sound very long, it can definitely be shortened with an introduction of an effective application.
-<br><br></h7>
-		<h7>To combat this issue, there are websites which attempt to update parking information in real time. For example, iPosNet is a website that tries to provide parking availability in real-time, however the reality is poor [10]. Websites like these fail to actually update information in real-time, hence misleading users to believe that certain parking lots are actually open. These websites are actually quite hard to navigate as they simply post the parking information with minimal UI design. Furthermore, these websites do not necessarily contain information that is pivotal for drivers such as the actual route to get to the parking lot. When we take a look at the official parking website for Times [4], it becomes clear that parking information is provided vividly by showing the parking lots on the map. However, the actual route is not provided, and when we consider how narrow and confusing many Japanese streets are, this may be problematic. 
-<br><br></h7>
-		<h7>Furthermore, an issue that can not be ignored in a country like Japan is the traffic. According to Nashinari Katsuhiro of Tokyo University, the amount of traffic in Japan is so large that its economic damage equates to 1/7 of the national budget [6]. Additionally, according to the Osaka government, there are 327 major traffic congestion points in normal roads, a number higher than many other prefectures [9]. Although traffic is a prominent issue all around Japan, it becomes clear that it is especially bad in a major prefecture such as Osaka as neighboring prefectures in Hyogo and Kyoto have significantly less major traffic congestion points [9]. It is clear that route recommendation applications should not be ignoring these numbers considering how prominent they are. 
-<br><br></h7>
-		<h7>This inefficient search for parking not only exacerbates traffic congestion but also increases fuel consumption and driver stress. Research by Ponnambalam and Donmez demonstrated that searching for parking significantly elevates drivers' cognitive workload and stress levels, as evidenced by changes in driving behavior, reduced speed, and altered glance patterns during parking searches [2]. Existing navigation systems typically direct users to the nearest parking lot based on distance alone, without factoring in real-time occupancy or traffic conditions. As a result, drivers may arrive at fully occupied facilities, further contributing to unnecessary traffic buildup. 
-<br><br></h7>
-		<h7>Our project aims to address these limitations by offering a smart system that integrates live parking availability with historical traffic data, enabling dynamic route adjustments. Additionally, features such as parking duration tracking will assist users in managing parking time and estimating potential costs, creating a smoother, more efficient parking experience.
-<br><br></h7>
+            <p>Parking shortages remain a persistent urban issue in a major city like Hong Kong. One of the primary contributing factors is the strict parking regulations enforced by the government, leading to a scarcity of parking lots in the city [8, 12]. Another major contributor to parking difficulties comes from Hong Kong’s geographical constraints. With the city concentrated in only 16% of its 1100km2 land area, its high densities makes it difficult for drivers to find a parking lot comfortably [3, 9].</p>
+            <p>Hong Kong has two main forms of parking. One prevalent way of parking is on-street parkings found scattered around the city. Although seemingly useful for drivers, according to Wu and Ma, the occupancy rate of them exceeds 80% on average, making it difficult for drivers to find an open on-street parking spot especially in dense areas [10]. Parking lots are also prevalent, however the lack of them is highly problematic to the point where it was brought up in a governmental press release, noting that there are significantly less parking spots for commercial vehicles, showing its detrimental impact not only on private vehicle use but also the transport sector [4].</p>
+            <p>In an attempt to mitigate the issue, applications to show vacancy of parking lots have been developed world wide. Such applications include HKeMeter, a mobile app providing real-time parking information [2]. Although they are useful to understand the vacancy at the moment, considering how drivers would like to know how vacant a parking lot will be before reaching a destination, only providing live data is not practical enough. Furthermore, these websites do not necessarily contain information that is pivotal for drivers such as the route navigation. When we take a look at the official parking website for Arcgis, it becomes clear that parking information is provided vividly by showing the parking lots on the map [7]. However, the actual routes are not provided, and when we consider how clustered roads can be in Hong Kong, this is problematic.</p>
+            <p>Our project aims to address these limitations by offering a smart system that integrates a prediction based model of past parking vacancy data. The system recommends the best parking lot for the user based on distance from the inputted location to price. Additionally, features such as parking duration tracking and navigation for walking distances will assist users in managing parking time, estimating potential costs, and time management, creating a smoother, more efficient parking experience. Furthermore, a simple color coded traffic overlay shall be incorporated to allow drivers to understand the road congestions easily.</p>
         </div>
     </section>
 
@@ -104,7 +101,7 @@
     <section id="vision" class="section">
         <div class="container">
             <h6 class="section-title text-center">Vision</h6>
-            <h7>We aim to create a standalone smart parking application leveraging historical and real-time data to guide drivers efficiently to available spaces, reducing cruising time, minimizing congestion, and contributing to smarter, sustainable cities.</h7>
+            <p class="text-center">Our vision is to create a standalone smart parking application that leverages historical and real-time data to efficiently recommend a vacant parking lot to the users.</p>
         </div>
     </section>
 
@@ -113,24 +110,39 @@
         <div class="container">
             <h6 class="section-title text-center">Objectives</h6>
             <ul>
-                <li>Develop a standalone app recommending parking lots based on destination, real-time availability, and historical traffic patterns.</li>
-                <li>Integrate real-time parking data through web scraping and open traffic datasets.</li>
-                <li>Implement dynamic routing algorithms adjusting paths based on conditions.</li>
-                <li>Provide a clear, user-friendly interface.</li>
-                <li>Reduce environmental impact by lowering congestion and idle time.</li>
+                <li>Develop a standalone application that recommends parking lots based on destination and real-time parking availability.</li>
+                <li>Allow flexible search within a set radius around the destination.</li>
+                <li>Provide visual aid of road congestions to users to allow them to find the most optimal route to a parking lot.</li>
+                <li>Provide a clear, user-friendly interface that integrates driving and parking seamlessly.</li>
+                <li>Reduce environmental impacts by decreasing congestion and idle time in urban areas.</li>
             </ul>
         </div>
     </section>
+    
+    <!-- Stakeholders Section -->
+    <section id="stakeholders" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Stakeholders</h6>
+            <ul>
+                <li><b>Private drivers:</b> provide a quick and easy to use parking recommendation system incorporating factors such as distance and price.</li>
+                <li><b>Commercial drivers:</b> provide recommended parking largely prioritizing distance.</li>
+            </ul>
+        </div>
+    </section>
+
 
     <!-- Features Section -->
     <section id="features" class="section">
         <div class="container">
             <h6 class="section-title text-center">Features</h6>
             <ul>
-                <li><b>Real-Time Parking Availability:</b> Using APIs and web scraping technologies, the app provides real-time updates on nearby parking availability. Unlike traditional navigation systems, it considers both proximity and current occupancy to recommend the most practical parking spots.
-</li>
-                <li><b>Smart Navigation:</b> The system offers route recommendations that dynamically adjust for both traffic congestion and parking availability. If the nearest parking lot is full, users are redirected to alternative options, reducing wasted time on traffic congestion.</li>
+                <li><b>Map Based Parking Lot Display Around Destination:</b> Displays all available parking lots within a certain area around the selected destination. Users can visually explore lots on an interactive map.</li>
+                <li><b>Real-Time Parking Availability + Prediction:</b> The app combines live data with historical trends to predict availability on arrival. Unlike static systems, our app recommends parking lots that are likely to be available based on the user’s estimated time of arrival.</li>
+                <li><b>User Preference Based Recommendation System:</b> Users can prioritize distance from destination, price per hour, and likelihood availability. The app suggests the most suitable parking lot accordingly.</li>
+                <li><b>Manual Parking Lot Selection:</b> Users are free to override the recommended parking lot by the app and select any other nearby parking lots.</li>
+                <li><b>Dual Navigation:</b> The app provides a driving route and a walking route from the parking lot to the destination using actual pedestrian paths and walking time estimates.</li>
                 <li><b>Parking Duration Tracking:</b> Upon parking, the app automatically tracks the duration of the user's stay. For parking lots with hourly rates, it estimates real-time fees, allowing users to better manage parking costs and plan departures without stress.</li>
+                <li><b>Traffic Congestion Visualization:</b> Live and predicted traffic congestion data is layered onto the map to help users avoid congested areas and choose alternate routes.</li>
             </ul>
         </div>
     </section>
@@ -139,11 +151,9 @@
     <section id="methodology" class="section">
         <div class="container">
             <h6 class="section-title text-center">Methodology</h6>
-            <h7>This application will provide optimized routes to available parking lots in real-time, accessible via smartphones for maximum user convenience. Based on research from A. Khanna and R. Anand [3], IoT-based smart parking solutions have successfully employed Apache Cordova to deploy applications on both Android and iOS platforms. Following similar cross-platform strategies ensures wider accessibility.</h7>
-		<h7>Users will be required to share their current location with the application. Upon opening the app, a map will display the user's location along with available nearby parking lots, specifically focusing initially on “Times Parking” facilities operated by Park24 Co., Ltd., which manages over 740,000 parking spaces nationwide [4]. 
-</h7>
-		<h7>The design of the map will be created with the assistance of MapFan API, an API containing necessary information and data for the traffic information in Osaka [8]. Conveniently, the API also provides visual representations of the said traffic, allowing the users to understand which roads are congested at first glance. </h7>
-		<h7>The exact calculation methods for the traffic and parking information is not yet decided. For the traffic information, research done by Mystakidis et al. provided an overview of the plethora of ways we can approach model creation and the effectiveness of each approach [5]. Some methods of calculations that were recommended include gradient boosting and adaboost. Furthermore, a website containing papers as well as the corresponding code that was used for the creation of a traffic prediction model will be used to help us create our own models while minimising potential errors [7]. </h7>
+            <p>Users will be required to share their current location with the application. Upon opening the app, a map will display the user's location along with available nearby parking lots. The data that will be used to train a prediction model is an open dataset provided by the government of Hong Kong [6].</p>
+            <p>The design of the map will be created with the assistance of Vector Map API, an API available from the Hong Kong government allowing us to create and modify the map of Hong Kong as we like to [11].</p>
+            <p>The approach that will be taken to create the prediction model itself is not yet decided, however through the literature review some potential approaches have been accumulated. For the congestion, research done by Mystakidis et al. provided an overview of the plethora of ways we can approach model creation and the effectiveness of each approach [5]. Some methods of calculations that were recommended include gradient boosting and adaboost. For example, the usage of LSTM and GRU models seemed plausible for our project [1]. Furthermore, a website containing papers as well as the corresponding code that was used for the creation of a traffic prediction model will be used to help us create our own models while minimising potential errors [10].</p>
         </div>
     </section>
 
@@ -156,25 +166,30 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>Feature</th>
-                            <th>Our Smart Parking App</th>
+                            <th>NavPark</th>
                             <th>Traditional Systems</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Data Intelligence</td>
-                            <td>Live parking + historical traffic data integration</td>
-                            <td>Static or live-only parking information</td>
+                            <td>Combines live and historical data to predict availability</td>
+                            <td>Static or live-only information</td>
                         </tr>
                         <tr>
                             <td>Routing</td>
-                            <td>Dynamic routing adjusting for parking availability and traffic</td>
-                            <td>Fixed routes to nearest parking</td>
+                            <td>Dynamic routing with traffic congestion overlay for user choice</td>
+                            <td>Fixed routes, often to nearest parking only</td>
                         </tr>
                         <tr>
                             <td>User Experience</td>
-                            <td>Navigation + Parking combined</td>
-                            <td>Separate apps for navigation and parking search</td>
+                            <td>Integrated driving navigation and parking search in one app</td>
+                            <td>Separate apps for navigation and parking</td>
+                        </tr>
+                        <tr>
+                            <td>Recommendation</td>
+                            <td>User-preference based (vacancy, distance, price)</td>
+                            <td>Often limited to only the nearest option</td>
                         </tr>
                     </tbody>
                 </table>
@@ -185,8 +200,8 @@
     <!-- Future Work Section -->
     <section id="future" class="section">
         <div class="container">
-            <h6 class="section-title text-center">Future Objectives</h6>
-            <p>Initially focused on Osaka, the project will gradually expand to all 47 prefectures in Japan, requiring multiple parking data sources to cover nationwide availability.</p>
+            <h6 class="section-title text-center">Future Work</h6>
+            <p>The initial version will be limited to the Yau Tsim Mong district. Future versions aim to expand to cover all 18 districts of Hong Kong before expanding to other smart cities in Asia and around the globe.</p>
         </div>
     </section>
 
@@ -195,19 +210,18 @@
         <div class="container">
             <h6 class="section-title text-center">References</h6>
             <ul>
-                <li>[1] Ministry of Land, Infrastructure, Transport and Tourism (MLIT), "Big City Traffic Census", 2005. <a href="https://www.mlit.go.jp/toukeijouhou/chojou/urban/index.html" target="_blank">Link</a></li>
-                <li>[2] L. Ponnambalam and B. Donmez, "The Effects of Searching for Street Parking on Driver Behavior", Frontiers in Psychology, 2020. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7607006/" target="_blank">Link</a></li>
-                <li>[3] A. Khanna and R. Anand, "IoT based smart parking system", IOTA Conference, 2016.</li>
-                <li>[4] Times24 Co., Ltd., "Parking lot management track record", Park24 Group, 2023. <a href="https://times-info.net/owner/value/works/" target="_blank">Link</a></li>
-		<li>[5] Mystakidis, Aristeidis, et al. “Advances in traffic congestion prediction: An overview of emerging techniques and methods.” Smart Cities, vol. 8, no. 1, 7 Feb. 2025, p. 25, https://doi.org/10.3390/smartcities8010025. 
-</li>
-		<li>[6] Nishinari, Katsuhiro. 渋滞のサイエンスとその解消法, 2016, https://doi.org/https://doi.org/10.11316/butsuri.71.3_170. </li>
-		<li>[7] “Traffic Prediction.” Papers With Code, paperswithcode.com/task/traffic-prediction. Accessed 28 Apr. 2025. </li>
-		<li>[8] “地図API　地図表示/ルート探索/検索機能のwebシステム開発ツール: Mapfan API: ジオテクノロジーズ法人向け地図・位置情報サービス.” ジオテクノロジーズ株式会社 法人向け地図・位置情報サービス, business.mapfan.com/service/api/. Accessed 28 Apr. 2025. 
-</li>
-		<li>[9] 大阪の交通の現状 - 大阪府, www.pref.osaka.lg.jp/documents/22417/11-koutuugenjo.pdf. Accessed 28 Apr. 2025.</li>
-		<li>[10]  “駐車場検索ならアイポスネットにおまかせ！！ リアルタイムに満空情報も配信中！！.” iPosNetリアルタイム駐車場情報, search.ipos-land.jp/p/. Accessed 28 Apr. 2025. 
-</li>
+                <li>[1] Arjona, Jamie, et al. “Improving parking availability information using Deep Learning Techniques.” Transportation Research Procedia, vol. 47, 2020, pp. 385–392, https://doi.org/10.1016/j.trpro.2020.03.113.</li>
+                <li>[2] “Introduction.” Transport Department - Introduction, 28 Mar. 2025, www.td.gov.hk/en/transport_in_hong_kong/parking/parking_meters/npm/index.html.</li>
+                <li>[3] Lau, W. W., et al. “The Hong Kong second parking demand study.” Proceedings of the Institution of Civil Engineers - Transport, vol. 158, no. 1, Feb. 2005, pp. 53–59, https://doi.org/10.1680/tran.2005.158.1.53.</li>
+                <li>[4] “LCQ12: Shortage of Parking Spaces.” The Government of the Hong Kong Special Administrative Region Press Releases, www.info.gov.hk/gia/general/202201/26/P2022012600298.htm. Accessed 24 May 2025.</li>
+                <li>[5] Mystakidis, Aristeidis, et al. “Advances in traffic congestion prediction: An overview of emerging techniques and methods.” Smart Cities, vol. 8, no. 1, 7 Feb. 2025, p. 25, https://doi.org/10.3390/smartcities8010025.</li>
+                <li>[6] “Parking Vacancy Data.” DATA.GOV.HK, data.gov.hk/en-data/dataset/hk-td-tis_5-real-time-parking-vacancy-data. Accessed 24 May 2025.</li>
+                <li>[7] Real-Time Parking Vacancy in Hong Kong, www.arcgis.com/apps/dashboards/93d81c16e4f145daa17a52642fef48da. Accessed 24 May 2025.</li>
+                <li>[8] “ROAD TRAFFIC (PARKING) REGULATIONS.” Legislation, www.elegislation.gov.hk/hk/cap374C@1997-06-30T00:00:00?xpid=ID_1438403121854_001. Accessed 24 May 2025.</li>
+                <li>[9] Thompson, D., et al. “Development of a transport model for East Kowloon, Hong Kong.” Proceedings of the Institution of Civil Engineers - Transport, vol. 141, no. 2, May 2000, pp. 87–97, https://doi.org/10.1680/tran.2000.141.2.87.</li>
+                <li>[10] “Traffic Prediction.” Papers With Code, paperswithcode.com/task/traffic-prediction. Accessed 28 Apr. 2025.</li>
+                <li>[11] Vector Map Api, portal.csdi.gov.hk/csdi-webpage/apidoc/VectorMapAPI. Accessed 24 May 2025.</li>
+                <li>[12] Wu, Fan, and Wei Ma. “Clustering analysis of the spatio-temporal on-street parking occupancy data: A case study in Hong Kong.” Sustainability, vol. 14, no. 13, 29 June 2022, p. 7957, https://doi.org/10.3390/su14137957.</li>
             </ul>
         </div>
     </section>
