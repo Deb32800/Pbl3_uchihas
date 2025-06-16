@@ -14,6 +14,18 @@
         html {
             scroll-behavior: smooth;
         }
+        /* Make wireframe images smaller */
+        #wireframes img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+        }
+        .wireframe-img {
+            max-width: 50px;
+            max-height: 35px;
+            width: 10%;
+            height: auto;
+        }
     </style>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
@@ -47,6 +59,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#interact">Interaction Scenarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sequence-diagrams">Sequence Diagrams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#wireframes">Wireframes</a>
                     </li>
                 </ul>
             </div>
@@ -403,7 +421,7 @@
                 <div class="col-md-6 mb-4">
                     <h6>Activity Diagram</h6>
                     <p>Models the system fetching traffic data and rendering roads in grey, orange, or green based on traffic status.</p>
-                    <img src="../Others/images/FR1.2_AC.png" alt="Activity Diagram for FR 1.2" class="img-fluid rounded shadow-sm">
+                    <img src="../Others/images/FR1.2AC.png" alt="Activity Diagram for FR 1.2" class="img-fluid rounded shadow-sm">
                 </div>
             </div>
 
@@ -416,12 +434,12 @@
                 <div class="col-md-6 mb-4">
                     <h6>Use Case Diagram</h6>
                     <p>Shows the Driver viewing parking lots on the map with color codes representing availability (green, yellow, red).</p>
-                    <img src="../Others/images/FR2_uc.png" alt="Use Case for FR 2" class="img-fluid rounded shadow-sm">
+                    <img src="../Others/images/FR2_ucn.png" alt="Use Case for FR 2" class="img-fluid rounded shadow-sm">
                 </div>
                 <div class="col-md-6 mb-4">
                     <h6>Activity Diagram</h6>
                     <p>Describes the process of the system assigning and displaying color codes to parking lots based on real-time availability.</p>
-                    <img src="../Others/images/FR2_AC.png" alt="Activity Diagram for FR 2" class="img-fluid rounded shadow-sm">
+                    <img src="../Others/images/FR2_ACn.png" alt="Activity Diagram for FR 2" class="img-fluid rounded shadow-sm">
                 </div>
             </div>
 
@@ -452,12 +470,12 @@
                 <div class="col-md-6 mb-4">
                     <h6>Use Case Diagram</h6>
                     <p>Shows the Driver choosing from multiple methods to input their location or destination (GPS, pin, address, voice, or saved places).</p>
-                    <img src="../Others/images/FR3_uc.png" alt="Use Case for FR 3" class="img-fluid rounded shadow-sm">
+                    <img src="../Others/images/FR3_ucn.png" alt="Use Case for FR 3" class="img-fluid rounded shadow-sm">
                 </div>
                 <div class="col-md-6 mb-4">
                     <h6>Activity Diagram</h6>
                     <p>Details the flow of the user selecting a location input method and the system processing the input accordingly.</p>
-                    <img src="../Others/images/FR3_AC.png" alt="Activity Diagram for FR 3" class="img-fluid rounded shadow-sm">
+                    <img src="../Others/images/FR3_ACn.png" alt="Activity Diagram for FR 3" class="img-fluid rounded shadow-sm">
                 </div>
             </div>
 
@@ -475,7 +493,7 @@
                 <div class="col-md-6 mb-4">
                     <h6>Activity Diagram</h6>
                     <p>Details the flow of the app requesting location permissions, accessing the device GPS, and centering the map on the user's current location.</p>
-                    <img src="../Others/images/FR3.1_AC.png" alt="Activity Diagram for FR 3.1" class="img-fluid rounded shadow-sm">
+                    <img src="../Others/images/FR3.1_ACn.png" alt="Activity Diagram for FR 3.1" class="img-fluid rounded shadow-sm">
                 </div>
             </div>
 
@@ -493,7 +511,7 @@
                 <div class="col-md-6 mb-4">
                     <h6>Activity Diagram</h6>
                     <p>Describes the process of the user placing a marker and the system updating the selected location.</p>
-                    <img src="../Others/images/FR3.2_AC.png" alt="Activity Diagram for FR 3.2" class="img-fluid rounded shadow-sm">
+                    <img src="../Others/images/FR3.2_ACn.png" alt="Activity Diagram for FR 3.2" class="img-fluid rounded shadow-sm">
                 </div>
             </div>
 
@@ -511,7 +529,7 @@
                 <div class="col-md-6 mb-4">
                     <h6>Activity Diagram</h6>
                     <p>Describes the process of the user typing an address and the system geocoding it to a map location.</p>
-                    <img src="../Others/images/FR3.3_AC.png" alt="Activity Diagram for FR 3.3" class="img-fluid rounded shadow-sm">
+                    <img src="../Others/images/FR3.3_ACn.png" alt="Activity Diagram for FR 3.3" class="img-fluid rounded shadow-sm">
                 </div>
             </div>
 
@@ -529,7 +547,7 @@
                 <div class="col-md-6 mb-4">
                     <h6>Activity Diagram</h6>
                     <p>Describes the process of the user speaking a location and the system recognizing and setting it on the map.</p>
-                    <img src="../Others/images/FR3.4_AC.png" alt="Activity Diagram for FR 3.4" class="img-fluid rounded shadow-sm">
+                    <img src="../Others/images/FR3.4_ACn.png" alt="Activity Diagram for FR 3.4" class="img-fluid rounded shadow-sm">
                 </div>
             </div>
 
@@ -542,12 +560,12 @@
                 <div class="col-md-6 mb-4">
                     <h6>Use Case Diagram</h6>
                     <p>Shows the Driver saving a destination for quick access in the future.</p>
-                    <img src="../Others/images/FR3.5_uc.png" alt="Use Case for FR 3.5" class="img-fluid rounded shadow-sm">
+                    <img src="../Others/images/FR3.5_ucn.png" alt="Use Case for FR 3.5" class="img-fluid rounded shadow-sm">
                 </div>
                 <div class="col-md-6 mb-4">
                     <h6>Activity Diagram</h6>
                     <p>Describes the process of the user saving a location and the system making it available for quick selection later.</p>
-                    <img src="../Others/images/FR3.5_AC.png" alt="Activity Diagram for FR 3.5" class="img-fluid rounded shadow-sm">
+                    <img src="../Others/images/FR3.5_ACn.png" alt="Activity Diagram for FR 3.5" class="img-fluid rounded shadow-sm">
                 </div>
             </div>
 
@@ -844,12 +862,40 @@
         </div>
     </section>
 
+    <!-- Wireframe Section -->
+    <section id="wireframes" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Wireframes</h6>
+            <div class="row mt-5">
+                <div class="col-md-12 mb-5">
+                    <h5>1. Main UI</h5>
+                    <p>This is the main UI of NavPark containing a map of Yau Tsim Mong with road congestions of major streets shown with the colors red, yellow, and green, with red representing bad traffic, yellow representing mild traffic, and green representing no traffic. Once a user drops a red pin on the map indicating the destination they want to reach, a blue route will appear, leading the user to the closest vacant parking lot. A black, dotted line appears from the parking lot to the final destination which shows the walking route. Finally, as this is the start of the navigation, a notification appears at the top of the screen.</p>
+                    <div class="text-center">
+                        <img src="../Others/images/mainUI.png" alt="Main UI Wireframe" class="img-fluid rounded shadow-sm mb-3">
+                    </div>
+                </div>
+                <div class="col-md-12 mb-5">
+                    <h5>2. Settings Page</h5>
+                    <p>This is the settings page, including a preferences and account settings section. The preferences can be adjusted to fit the users' desired driving distance, walking distance, maximum parking fee, and finally whether they want GPS to be turned on. The preferences chosen here will affect the recommended parking lot. Furthermore, the account settings section deals with the user wanting to change their password of their account, the user wanting to delete their parking history, and the user wanting to delete their account. The deletion of the parking history and account is written in red as these actions can not be reverted, hence the user must think wisely before carrying this out.</p>
+                    <div class="text-center">
+                        <img src="../Others/images/setting.png" alt="Settings Wireframe" class="img-fluid rounded shadow-sm mb-3">
+                    </div>
+                </div>
+                <div class="col-md-12 mb-5">
+                    <h5>3. Notifications</h5>
+                    <p>This shows notifications a user may receive when using the application. The bottom notification may appear if a closer vacant parking lot appears, and the top notification will appear once the user has reached the notification.</p>
+                    <div class="text-center">
+                        <img src="../Others/images/notifi.png" alt="Notifications Wireframe" class="img-fluid rounded shadow-sm mb-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Core JavaScript -->
     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
-    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
-    <script src="assets/js/leadmark.js"></script>
 
 </body>
 </html>
