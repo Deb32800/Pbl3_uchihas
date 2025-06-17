@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="NavPark Project Proposal">
+    <meta name="author" content="Your Team Name">
+    <title>NavPark | Project Proposal</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + LeadMark main styles -->
+	<link rel="stylesheet" href="assets/css/leadmark.css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/imgs/logo.svg" alt="logo">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">    
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>                 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#introduction">Introduction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#background">Background</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#vision">Vision</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#objectives">Objectives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#stakeholders">Stakeholders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#methodology">Methodology</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#comparison">Comparative Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#future">Future Work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#references">References</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Of Navigation -->
+
+    <!-- Page Header -->
+    <header class="header">
+        <div class="overlay">
+            <h1 class="subtitle">NavPark</h1>
+            <h1 class="title">Project Proposal</h1>  
+        </div>  
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
+            </svg>
+        </div>  
+        <div class="mouse-icon"><div class="wheel"></div></div>
+    </header>
+    <!-- End Of Page Header -->
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Introduction</h6>
+            <p class="text-center">Limited parking availability is a pressing issue in densely populated cities around the world, and is especially noticeable in a highly dense city like Hong Kong. The issue leads to drivers being unable to park their cars consistently, affecting everyday life and the transport sector. Hence, this project proposes the development of a smart parking guidance application that leverages historical traffic data with real-time parking availability from government-certified open datasets. The system aims to reduce search time and support sustainable urban mobility in smart cities by displaying context-aware parking information.</p>
+        </div>
+    </section>
+
+    <!-- Background Section -->
+    <section id="background" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Background and Problem Statement</h6>
+            <p>Parking shortages remain a persistent urban issue in a major city like Hong Kong. One of the primary contributing factors is the strict parking regulations enforced by the government, leading to a scarcity of parking lots in the city [8, 12]. Another major contributor to parking difficulties comes from Hong Kong’s geographical constraints. With the city concentrated in only 16% of its 1100km2 land area, its high densities makes it difficult for drivers to find a parking lot comfortably [3, 9].</p>
+            <p>Hong Kong has two main forms of parking. One prevalent way of parking is on-street parkings found scattered around the city. Although seemingly useful for drivers, according to Wu and Ma, the occupancy rate of them exceeds 80% on average, making it difficult for drivers to find an open on-street parking spot especially in dense areas [10]. Parking lots are also prevalent, however the lack of them is highly problematic to the point where it was brought up in a governmental press release, noting that there are significantly less parking spots for commercial vehicles, showing its detrimental impact not only on private vehicle use but also the transport sector [4].</p>
+            <p>In an attempt to mitigate the issue, applications to show vacancy of parking lots have been developed world wide. Such applications include HKeMeter, a mobile app providing real-time parking information [2]. Although they are useful to understand the vacancy at the moment, considering how drivers would like to know how vacant a parking lot will be before reaching a destination, only providing live data is not practical enough. Furthermore, these websites do not necessarily contain information that is pivotal for drivers such as the route navigation. When we take a look at the official parking website for Arcgis, it becomes clear that parking information is provided vividly by showing the parking lots on the map [7]. However, the actual routes are not provided, and when we consider how clustered roads can be in Hong Kong, this is problematic.</p>
+            <p>Our project aims to address these limitations by offering a smart system that integrates a prediction based model of past parking vacancy data. The system recommends the best parking lot for the user based on distance from the inputted location to price. Additionally, features such as parking duration tracking and navigation for walking distances will assist users in managing parking time, estimating potential costs, and time management, creating a smoother, more efficient parking experience. Furthermore, a simple color coded traffic overlay shall be incorporated to allow drivers to understand the road congestions easily.</p>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Vision</h6>
+            <p class="text-center">Our vision is to create a standalone smart parking application that leverages historical and real-time data to efficiently recommend a vacant parking lot to the users.</p>
+        </div>
+    </section>
+
+    <!-- Objectives Section -->
+    <section id="objectives" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Objectives</h6>
+            <ul>
+                <li>Develop a standalone application that recommends parking lots based on destination and real-time parking availability.</li>
+                <li>Allow flexible search within a set radius around the destination.</li>
+                <li>Provide visual aid of road congestions to users to allow them to find the most optimal route to a parking lot.</li>
+                <li>Provide a clear, user-friendly interface that integrates driving and parking seamlessly.</li>
+                <li>Reduce environmental impacts by decreasing congestion and idle time in urban areas.</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Stakeholders Section -->
+    <section id="stakeholders" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Stakeholders</h6>
+            <ul>
+                <li><b>Private drivers:</b> provide a quick and easy to use parking recommendation system incorporating factors such as distance and price.</li>
+                <li><b>Commercial drivers:</b> provide recommended parking largely prioritizing distance.</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Features</h6>
+            <ul>
+                <li><b>Map Based Parking Lot Display Around Destination:</b> Displays all available parking lots within a certain area around the selected destination. Users can visually explore lots on an interactive map.</li>
+                <li><b>Real-Time Parking Availability + Prediction:</b> The app combines live data with historical trends to predict availability on arrival. Unlike static systems, our app recommends parking lots that are likely to be available based on the user’s estimated time of arrival.</li>
+                <li><b>User Preference Based Recommendation System:</b> Users can prioritize distance from destination, price per hour, and likelihood availability. The app suggests the most suitable parking lot accordingly.</li>
+                <li><b>Manual Parking Lot Selection:</b> Users are free to override the recommended parking lot by the app and select any other nearby parking lots.</li>
+                <li><b>Dual Navigation:</b> The app provides a driving route and a walking route from the parking lot to the destination using actual pedestrian paths and walking time estimates.</li>
+                <li><b>Parking Duration Tracking:</b> Upon parking, the app automatically tracks the duration of the user's stay. For parking lots with hourly rates, it estimates real-time fees, allowing users to better manage parking costs and plan departures without stress.</li>
+                <li><b>Traffic Congestion Visualization:</b> Live and predicted traffic congestion data is layered onto the map to help users avoid congested areas and choose alternate routes.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Methodology</h6>
+            <p>Users will be required to share their current location with the application. Upon opening the app, a map will display the user's location along with available nearby parking lots. The data that will be used to train a prediction model is an open dataset provided by the government of Hong Kong [6].</p>
+            <p>The design of the map will be created with the assistance of Vector Map API, an API available from the Hong Kong government allowing us to create and modify the map of Hong Kong as we like to [11].</p>
+            <p>The approach that will be taken to create the prediction model itself is not yet decided, however through the literature review some potential approaches have been accumulated. For the congestion, research done by Mystakidis et al. provided an overview of the plethora of ways we can approach model creation and the effectiveness of each approach [5]. Some methods of calculations that were recommended include gradient boosting and adaboost. For example, the usage of LSTM and GRU models seemed plausible for our project [1]. Furthermore, a website containing papers as well as the corresponding code that was used for the creation of a traffic prediction model will be used to help us create our own models while minimising potential errors [10].</p>
+        </div>
+    </section>
+
+    <!-- Comparative Analysis Section -->
+    <section id="comparison" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Comparative Analysis</h6>
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Feature</th>
+                            <th>NavPark</th>
+                            <th>Traditional Systems</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data Intelligence</td>
+                            <td>Combines live and historical data to predict availability</td>
+                            <td>Static or live-only information</td>
+                        </tr>
+                        <tr>
+                            <td>Routing</td>
+                            <td>Dynamic routing with traffic congestion overlay for user choice</td>
+                            <td>Fixed routes, often to nearest parking only</td>
+                        </tr>
+                        <tr>
+                            <td>User Experience</td>
+                            <td>Integrated driving navigation and parking search in one app</td>
+                            <td>Separate apps for navigation and parking</td>
+                        </tr>
+                        <tr>
+                            <td>Recommendation</td>
+                            <td>User-preference based (vacancy, distance, price)</td>
+                            <td>Often limited to only the nearest option</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Work Section -->
+    <section id="future" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Future Work</h6>
+            <p>The initial version will be limited to the Yau Tsim Mong district. Future versions aim to expand to cover all 18 districts of Hong Kong before expanding to other smart cities in Asia and around the globe.</p>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">References</h6>
+            <ul>
+                <li>[1] Arjona, Jamie, et al. “Improving parking availability information using Deep Learning Techniques.” Transportation Research Procedia, vol. 47, 2020, pp. 385–392, https://doi.org/10.1016/j.trpro.2020.03.113.</li>
+                <li>[2] “Introduction.” Transport Department - Introduction, 28 Mar. 2025, www.td.gov.hk/en/transport_in_hong_kong/parking/parking_meters/npm/index.html.</li>
+                <li>[3] Lau, W. W., et al. “The Hong Kong second parking demand study.” Proceedings of the Institution of Civil Engineers - Transport, vol. 158, no. 1, Feb. 2005, pp. 53–59, https://doi.org/10.1680/tran.2005.158.1.53.</li>
+                <li>[4] “LCQ12: Shortage of Parking Spaces.” The Government of the Hong Kong Special Administrative Region Press Releases, www.info.gov.hk/gia/general/202201/26/P2022012600298.htm. Accessed 24 May 2025.</li>
+                <li>[5] Mystakidis, Aristeidis, et al. “Advances in traffic congestion prediction: An overview of emerging techniques and methods.” Smart Cities, vol. 8, no. 1, 7 Feb. 2025, p. 25, https://doi.org/10.3390/smartcities8010025.</li>
+                <li>[6] “Parking Vacancy Data.” DATA.GOV.HK, data.gov.hk/en-data/dataset/hk-td-tis_5-real-time-parking-vacancy-data. Accessed 24 May 2025.</li>
+                <li>[7] Real-Time Parking Vacancy in Hong Kong, www.arcgis.com/apps/dashboards/93d81c16e4f145daa17a52642fef48da. Accessed 24 May 2025.</li>
+                <li>[8] “ROAD TRAFFIC (PARKING) REGULATIONS.” Legislation, www.elegislation.gov.hk/hk/cap374C@1997-06-30T00:00:00?xpid=ID_1438403121854_001. Accessed 24 May 2025.</li>
+                <li>[9] Thompson, D., et al. “Development of a transport model for East Kowloon, Hong Kong.” Proceedings of the Institution of Civil Engineers - Transport, vol. 141, no. 2, May 2000, pp. 87–97, https://doi.org/10.1680/tran.2000.141.2.87.</li>
+                <li>[10] “Traffic Prediction.” Papers With Code, paperswithcode.com/task/traffic-prediction. Accessed 28 Apr. 2025.</li>
+                <li>[11] Vector Map Api, portal.csdi.gov.hk/csdi-webpage/apidoc/VectorMapAPI. Accessed 24 May 2025.</li>
+                <li>[12] Wu, Fan, and Wei Ma. “Clustering analysis of the spatio-temporal on-street parking occupancy data: A case study in Hong Kong.” Sustainability, vol. 14, no. 13, 29 June 2022, p. 7957, https://doi.org/10.3390/su14137957.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Core JavaScript -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
+    <script src="assets/js/leadmark.js"></script>
+
+</body>
+</html>
