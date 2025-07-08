@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="NavPark - Smart Parking Guidance System Architecture Document">
+    <meta name="author" content="Your Team Name">
+    <title>NavPark | System Architecture Document</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + LeadMark main styles -->
+	<link rel="stylesheet" href="assets/css/leadmark.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/imgs/logo.svg" alt="NavPark Logo">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">    
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#introduction">Introduction</a>
+                    </li>                 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#goals">Architecture Goals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tier">Architecture Tier</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#diagrams">Diagrams</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Of Navigation -->
+
+    <!-- Page Header -->
+    <header class="header">
+        <div class="overlay">
+            <h1 class="subtitle">NavPark: A Predictive Parking Solution</h1>
+            <h1 class="title">System Architecture Document</h1>  
+        </div>  
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
+            </svg>
+        </div>  
+        <div class="mouse-icon"><div class="wheel"></div></div>
+    </header>
+    <!-- End Of Page Header -->
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Introduction</h6>
+            <h7 class="text-center">The Smart Parking Navigation System for Hong Kong is designed to address urban congestion and inefficient parking discovery. The system helps drivers locate available parking spots in real-time and suggests optimal navigation routes based on traffic conditions and user preferences. This architecture document outlines the structural design and deployment strategy that supports the core functionality of the application.</h7>
+        </div>
+    </section>
+
+    <!-- Architecture Goals Section -->
+    <section id="goals" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Architecture Goals</h6>
+            
+            <div class="row mt-4">
+                <div class="col-md-6 mb-4">
+                    <h5><strong>Performance</strong></h5>
+                    <h7>The system must provide fast and responsive services, including real-time updates of parking availability and route suggestions, even under heavy traffic and data load in densely populated areas like Hong Kong.</h7>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h5><strong>Security</strong></h5>
+                    <h7>All components of the system must ensure secure communication, data encryption (in-transit and at-rest), and protection against unauthorized access to safeguard user credentials, sensor data, and server resources.</h7>
+                </div>
+            </div>
+            
+            <div class="row mt-2">
+                <div class="col-md-6 mb-4">
+                    <h5><strong>Safety</strong></h5>
+                    <h7>The system promotes user and public safety by providing accurate, real-time data that helps reduce unnecessary driving and distractions. Design decisions prioritize minimizing risks related to navigation errors or misleading parking information.</h7>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h5><strong>Availability</strong></h5>
+                    <h7>The system must remain operational and accessible at all times, with high uptime and minimal disruption. Redundant components and cloud infrastructure are used to support failover and continuous availability.</h7>
+                </div>
+            </div>
+            
+            <div class="row mt-2">
+                <div class="col-md-6 mb-4">
+                    <h5><strong>Maintainability</strong></h5>
+                    <h7>The architecture must support ease of maintenance and future upgrades. Modular components and clearly defined APIs allow developers to fix bugs, add features, or replace services with minimal impact on the overall system.</h7>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Tier Section -->
+    <section id="tier" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Architecture Tier</h6>
+            <h7 class="text-center mb-5">The system architecture for the Smart Parking Navigation system is organized into three main tiers: the Presentation Tier (User Interface), the Application Tier (Backend Services), and the Data Tier (Database & Storage). Additionally, the architecture includes external APIs such as mapping services and real-time traffic data providers.</h7>
+            
+            <!-- Presentation Tier -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h4 class="text-center mb-4"><strong>Presentation Tier</strong></h4>
+                    <ul class="mb-4">
+                        <li>User Login and Registration Interface</li>
+                        <li>Real-time Parking Availability Display</li>
+                        <li>Occupancy Forecast Visualization</li>
+                        <li>Route Navigation with Turn-by-Turn Directions</li>
+                        <li>User Feedback and Rating Interface</li>
+                    </ul>
+                    
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered table-striped text-center">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Purpose</th>
+                                    <th>Library or Framework</th>
+                                    <th>Programming Language</th>
+                                    <th>App Framework</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Frontend Development</td>
+                                    <td>React, JavaScript, C#, Python</td>
+                                    <td>JavaScript, C#, Python</td>
+                                    <td>Next.js</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Tier -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h4 class="text-center mb-4"><strong>Application Tier</strong></h4>
+                    <ul class="mb-4">
+                        <li>User Authentication and Profile Management</li>
+                        <li>Route Calculation and Optimization</li>
+                        <li>Integration with Google Maps API / OpenStreetMap</li>
+                        <li>Real-time Parking Data Processing</li>
+                        <li>Machine Learning Prediction Service (for parking availability)</li>
+                        <li>Feedback and Notification Management</li>
+                        <li>Localization and Multi-language Support</li>
+                    </ul>
+                    
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered table-striped text-center">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Component</th>
+                                    <th>Technology Stack</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Server Framework</td>
+                                    <td>Next.js</td>
+                                </tr>
+                                <tr>
+                                    <td>ML Prediction</td>
+                                    <td>Python / C#</td>
+                                </tr>
+                                <tr>
+                                    <td>Authentication</td>
+                                    <td>JWT</td>
+                                </tr>
+                                <tr>
+                                    <td>API Design</td>
+                                    <td>Next.js</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Tier -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h4 class="text-center mb-4"><strong>Data Tier</strong></h4>
+                    <ul class="mb-4">
+                        <li>Stores user accounts, parking lot data, booking history, and real-time availability</li>
+                        <li>Supports time-series analysis for predictive analytics</li>
+                        <li>Maintains logs for monitoring and analytics</li>
+                    </ul>
+                    
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered table-striped text-center">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Data Type</th>
+                                    <th>Technology</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>User & Parking Data</td>
+                                    <td>PostgreSQL with TimescaleDB extension</td>
+                                </tr>
+                                <tr>
+                                    <td>Real-time Cache & Sessions</td>
+                                    <td>Redis or MongoDB</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diagrams Section -->
+    <section id="diagrams" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Diagrams</h6>
+            
+            <!-- Client Server Architecture -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h4 class="text-center mb-4"><strong>Client Server Architecture</strong></h4>
+                    <div class="text-center mb-4">
+                        <img src="../Others/images/clientserver.png" alt="Client Server Architecture Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Client Server Architecture Diagram</p>
+                    </div>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Client Interface</th>
+                                    <th>Description of Client</th>
+                                    <th>Associated Server</th>
+                                    <th>Description of Server</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Login / Registration</strong></td>
+                                    <td>Interface for user sign-up and login. Sends an HTTP request with user credentials.</td>
+                                    <td><strong>User Server</strong></td>
+                                    <td>Handles authentication and stores account info in the User Account Database. Sends HTTP responses with tokens.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Parking Map Interface</strong></td>
+                                    <td>Interface that displays real-time parking availability on a map.</td>
+                                    <td><strong>Parking Data Server</strong></td>
+                                    <td>Fetches and processes live parking data from external sources (e.g., HK Gov API). Sends color-coded availability data.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Prediction Display</strong></td>
+                                    <td>Interface that shows forecasted parking availability for the next 1–2 hours.</td>
+                                    <td><strong>Prediction Server</strong></td>
+                                    <td>Runs a machine learning model using historical data to generate predictions</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Navigation Interface</strong></td>
+                                    <td>Allows users to get directions to a selected parking lot using turn-by-turn routing.</td>
+                                    <td><strong>Routing Server</strong></td>
+                                    <td>Uses Google Maps API to calculate and send optimized routes, traffic-aware ETA, and rerouting instructions.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Feedback</strong></td>
+                                    <td>Interface for submitting feedback and viewing user reviews for parking lots.</td>
+                                    <td><strong>Feedback Server</strong></td>
+                                    <td>Collects, stores, and manages feedback and ratings. Connects to Parking Lot DB and User DB for context.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pipe and Filter -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h4 class="text-center mb-4"><strong>Pipe and Filter</strong></h4>
+                    <div class="text-center mb-4">
+                        <img src="../Others/images/pipeandfilter.png" alt="Pipe and Filter Architecture Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Pipe and Filter Architecture Diagram</p>
+                    </div>
+                    <h7 class="text-center">NavPark streamlines smart parking navigation through a structured pipe-and-filter workflow. The process begins when a user submits a start point and destination (User Request). The system validates preferences (e.g., parking cost, walking distance) via the User Database, then calculates the initial route and ETA using the Map Service. The Traffic Prediction Filter refines the path based on the traffic prediction model to avoid congestion, while the Parking Prediction Filter identifies available spots based on the parking prediction model. The Recommendation Filter further personalizes options. The system then builds the Navigation Plan, which triggers the Notification Filter to send confirmations and alerts. Finally, the Map Render Filter displays the complete navigation solution with directions on the map interface.</h7>
+                </div>
+            </div>
+
+            <!-- Layered Architecture -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h4 class="text-center mb-4"><strong>Layered Architecture</strong></h4>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Layer</th>
+                                    <th>Core Functions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>User Interface</strong></td>
+                                    <td>
+                                        - Display interactive map with navigation routes<br>
+                                        - Show real-time parking availability markers
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>User Interface Management</strong></td>
+                                    <td>
+                                        - Handle user input validation<br>
+                                        - Manage UI state and transitions<br>
+                                        - Coordinate between UI and application logic
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Application Logic Layer</strong></td>
+                                    <td>
+                                        - Calculate optimal routes with parking<br>
+                                        - Process reservations and payments<br>
+                                        - Manage notification system
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Prediction Model Layer</strong></td>
+                                    <td>
+                                        - Analyze traffic patterns<br>
+                                        - Predict parking spot availability<br>
+                                        - Calculate dynamic pricing
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Data Storage Layer</strong></td>
+                                    <td>
+                                        - Store user profiles and preferences<br>
+                                        - Maintain parking location database<br>
+                                        - Archive historical traffic data
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-4">
+                        <img src="../Others/images/layer.png" alt="Layered Architecture Diagram" class="img-fluid rounded shadow-sm" style="max-width: 30%; height: auto;">
+                        <p class="text-center mt-2 font-italic">Figure: Layered Architecture Diagram</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
+    <script src="assets/js/leadmark.js"></script>
+
+</body>
+</html>

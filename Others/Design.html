@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="NavPark - Smart Parking Guidance System Project Proposal">
+    <meta name="author" content="Your Team Name">
+    <title>NavPark | System Design Document</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + LeadMark main styles -->
+	<link rel="stylesheet" href="assets/css/leadmark.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Make wireframe images smaller */
+        #wireframes img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+        }
+        .wireframe-img {
+            max-width: 50px;
+            max-height: 35px;
+            width: 10%;
+            height: auto;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <!-- Using your provided logo placeholder -->
+                <img src="assets/imgs/logo.svg" alt="NavPark Logo">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">    
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#introduction">Introduction</a>
+                    </li>                 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#arch">General Overview</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class="nav-link" href="#UC">Use Case and Activity Diagram</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sequence-diagrams">Sequence Diagrams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#wireframes">Wireframes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Of Navigation -->
+
+    <!-- Page Header -->
+    <header class="header">
+        <div class="overlay">
+            <h1 class="subtitle">NavPark: A Predictive Parking Solution</h1>
+            <h1 class="title">System Design Document</h1>  
+        </div>  
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
+            </svg>
+        </div>  
+        <div class="mouse-icon"><div class="wheel"></div></div>
+    </header>
+    <!-- End Of Page Header -->
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Introduction</h6>
+            <h7 class=" text-center">Navigating dense urban areas like Hong Kong’s Yau Tsim Mong district presents a significant challenge for drivers, primarily due to the difficulty of finding available parking. This contributes to traffic congestion, increased emissions, and driver stress. <strong>NavPark</strong> is designed to mitigate these issues by transforming the parking experience from a game of chance into a predictable, streamlined process.</h7>
+            <h7 class=" text-center mt-4">This document is a system design document for NavPark. The document contains a system diagram which explains the,  a class diagram to show the relationships between the classes in the system, sequence diagrams which show the flows of the application, a context diagram to show the the external interactions, and use case and activity diagrams for each user functional requirements defined in the Requirements Engineering document. 
+            </h7>
+        </div>
+    </section>
+
+    <!-- Version History Table -->
+    <section id="version-history" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Version History</h6>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <table class="table table-bordered table-striped text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Version</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.0</td>
+                                <td>Completed each individually assigned UML diagrams</td>
+                            </tr>
+                            <tr>
+                                <td>1.1</td>
+                                <td>Finalized the UMLs and made everything consistent.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- architecture Section -->
+    <section id="arch" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">General Overview</h6>
+            <h8 class="text-center">NavPark adopts a classic three-tier architecture, dividing the system into the presentation tier, application tier, and data tier across logically separated components to promote scalability and maintainability.</h8>
+            
+            <div class="row mt-5">
+                <div class="col-md-3 mx-auto">
+                    <img src="../Others/images/Teir.png" alt="System Architecture Diagram" class="img-fluid rounded shadow-sm">
+                    <p class="text-center mt-3 font-italic">Figure: Architecture Overview</p>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-18">
+                    <h7>The architecture is comprised of the following layers:</h7>
+                    <br>
+                    <br>
+                    <ul>
+                        <li><strong>Data Acquisition Layer:</strong> This layer is responsible for ingesting the external data. Its primary source is the Hong Kong Government's public data API, which provides real-time and historical parking vacancy information. It also integrates with external mapping services for traffic data, which is used to generate the color-coded congestion layer on the map.</li>
+                        <li><strong>Backend & Processing Layer:</strong> This is the backend of NavPark. This layer's responsibilities include:
+                            <ul>
+                                <li><strong>Data Processing:</strong> Aggregating and Processing incoming data from the acquisition layer.</li>
+                                <li><strong>Prediction Model:</strong> Running a machine learning model that uses historical data to forecast parking availability with ≥70% accuracy for the next two hours.</li>
+                                <li><strong>API Server:</strong> Exposing a secure API for the client application to fetch data, manage user profiles, and handle requests.</li>
+                                <li><strong>Database Management:</strong> Storing user account and preferences data, parking lot information, and historical datasets.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Application Layer:</strong> The user-facing component, consisting of the NavPark application for iOS and Android. It provides an intuitive, one-handed use interface featuring an interactive map with color-coded <strong>Availability States</strong> (green, yellow, red), multiple destination input methods, and seamless integration with external map APIs for turn-by-turn navigation.</li>
+                    </ul>
+
+                    <h5 class="mt-5 text-center">Detailed Architecture Layer Overview</h5>
+                    <h8 class="mt-5 text-center">The table below summarizes each major layer of the NavPark system, outlining their core responsibilities and the key technologies or components will be use to implement them. </h8>
+                    <br>
+                    <br>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered text-center" style="background: #fff;">
+                            <thead style="background: #343a40; color: #fff;">
+                                <tr>
+                                    <th style="vertical-align: middle;">Layer</th>
+                                    <th style="vertical-align: middle;">Primary Responsibilities</th>
+                                    <th style="vertical-align: middle;">Key Technologies / Components</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #f8f9fa;">
+                                    <td class="align-middle font-weight-bold" style="width: 15%;"><strong>Data Acquisition</strong></td>
+                                    <td class="text-left" style="width: 45%;">
+                                        <ul class="mb-0 pl-3 text-left">
+                                            <li>Ingest real-time and historical parking data from the Hong Kong Government API</li>
+                                            <li>Integrate traffic data for congestion visualization</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-left" style="width: 40%;">
+                                        <ul class="mb-0 pl-3 text-left">
+                                            <li>Public APIs (HK Govt)</li>
+                                            <li>External Mapping APIs (e.g., OpenStreetMap, HK Gov Map APIs)</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle font-weight-bold"><strong>Backend &amp; Processing</strong></td>
+                                    <td class="text-left">
+                                        <ul class="mb-0 pl-3 text-left">
+                                            <li>Aggregate and preprocess incoming data</li>
+                                            <li>Run machine learning models to predict parking availability</li>
+                                            <li>Provide secure API endpoints for client applications</li>
+                                            <li>Manage databases for user accounts, parking info, and historical data</li>
+                                            <li>Implement business logic and data validation</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-left">
+                                        <ul class="mb-0 pl-3 text-left">
+                                            <li>Node.js/Express or Spring Boot (API Server)</li>
+                                            <li>Python with ML frameworks (TensorFlow, scikit-learn)</li>
+                                            <li>RESTful APIs, JWT/OAuth2 for authentication</li>
+                                            <li>PostgreSQL with TimescaleDB for time-series data management</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr style="background: #f8f9fa;">
+                                    <td class="align-middle font-weight-bold"><strong>Application Layer</strong></td>
+                                    <td class="text-left">
+                                        <ul class="mb-0 pl-3 text-left">
+                                            <li>Provide an interactive, user-friendly mobile app interface</li>
+                                            <li>Display real-time parking availability, traffic conditions, and optimized routes</li>
+                                            <li>Support multiple input methods for destination selection (GPS, pin, address, voice)</li>
+                                            <li>Handle user preferences, notifications, and localization</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-left">
+                                        <ul class="mb-0 pl-3 text-left">
+                                            <li>React Native (cross-platform) or native iOS/Android development</li>
+                                            <li>Map SDKs (HK Gov, OSM), Push Notification Services</li>
+                                            <li>Localization libraries for multi-language support</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h5 class="text-center mb-4">Class Diagram</h5>
+            <h7 class="text-center">This diagram provides a static, structural view of the NavPark system. It outlines the key classes, their attributes, methods, and the relationships (associations) between them. This model serves as the blueprint for the system's object-oriented design and backend development.</h7>
+
+            <!-- The Diagram Image -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <img src="../Others/images/Class_Diagram-2.webp" alt="NavPark System Class Diagram" class="img-fluid rounded shadow-sm border">
+                    
+                    <p class="text-center mt-3 font-italic">Figure: NavPark System Class Diagram</p>
+                    <br>
+                    <br>
+                   
+                </div>
+            </div>
+
+            
+                    <h5 class="text-center mb-4">Class Descriptions</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Class Name</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Role Explanation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>User</strong></td>
+                                    <td>Entity</td>
+                                    <td>Stores user info (credentials, car info), settings, and preferences.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Preferences</strong></td>
+                                    <td>Entity</td>
+                                    <td>Holds specific user settings like notification toggles, preferred price ranges, max walking distance, and language.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ParkingLot</strong></td>
+                                    <td>Entity</td>
+                                    <td>Represents a physical parking lot, storing its location, fee structure, hours, and real-time/predicted availability.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Route</strong></td>
+                                    <td>Abstract</td>
+                                    <td>A base class defining common properties and methods for all types of routes (e.g., start point, end point).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>DrivingRoute</strong></td>
+                                    <td>Control</td>
+                                    <td>A concrete class that handles vehicle routing logic, integrating with the traffic overlay to calculate travel time.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>WalkingRoute</strong></td>
+                                    <td>Control</td>
+                                    <td>A concrete class that handles pedestrian routing from a selected parking lot to the user's final destination.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TrafficOverlay</strong></td>
+                                    <td>Entity</td>
+                                    <td>Represents traffic data for a map area. Used by the MapInterface to display congestion levels with color coding.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PredictionModel</strong></td>
+                                    <td>Abstract</td>
+                                    <td>Defines the base interface for all prediction logic, ensuring they have a common method (e.g., `predict()`).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ParkingPrediction</strong></td>
+                                    <td>Concrete</td>
+                                    <td>A concrete model implementation that predicts parking lot vacancy based on historical data and real-time events.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TrafficPrediction</strong></td>
+                                    <td>Concrete</td>
+                                    <td>A concrete model implementation that predicts future traffic congestion levels based on past data and known events.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>MapInterface</strong></td>
+                                    <td>Boundary</td>
+                                    <td>The primary UI component responsible for rendering the interactive map, displaying routes, parking lots, and overlays.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>NotificationService</strong></td>
+                                    <td>Control</td>
+                                    <td>Manages the logic and delivery of push notifications (e.g., availability changes, departure reminders) to the user's device.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>AuthService</strong></td>
+                                    <td>Control</td>
+                                    <td>Handles all authentication and authorization tasks, such as user login, registration, and session management.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PreferencesService</strong></td>
+                                    <td>Control</td>
+                                    <td>A service responsible for loading, saving, and managing a user's preferences from the database.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    
+            </div>
+        </div>
+
+        <div class="container">
+        <div class="col-md-12">
+            <br>
+            <br>
+                    <h5 class="text-center mb-4">Sequence Diagram</h5>
+                    
+                    <h7>This diagram shows NavPark's navigation flow through coordinated system interaction.</h7>
+                    <br>
+                    <br>
+                    <div class="text-center">
+                        <img src="../Others/images/genfnew.png" alt="Route Navigation Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Route Navigation</p>
+                    </div>
+                </div>
+
+        </div>
+        <div class="container">
+        <div class="col-md-12">
+            <br>
+            <br>
+                    <h5 class="text-center mb-4">Activity Diagram</h5>
+                    <h7>This diagram illustrates the step-by-step process of how NavPark guides users from parking spot selection to route navigation, ensuring a smooth and efficient parking experience.</h7>
+                    
+                    <br>
+                    <br>
+                    <div class="text-center">
+                        <img src="../Others/images/uml-activity-example-Example.png" alt="Route Navigation activity Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Activity Diagram for Route Navigation</p>
+                    </div>
+                </div>
+
+        </div>
+   
+        <div class="container">
+            <br>
+            <br>
+            <br>
+            <h5 class="text-center mb-4">Context Model</h5>
+            <h7 class=" text-center">We aim to create a standalone smart parking application leveraging historical data to predict precisely and guide drivers efficiently to available parking spaces near the destination, reducing cruising time, minimizing congestion, and contributing to smarter, sustainable cities.</h7>
+            <h7 class="text-center mt-4">The System Context Diagram below defines NavPark's operational boundaries and its interactions with external entities. This model clarifies the data flows and dependencies that are critical to the system's functionality.</h7>
+            
+            <div class="row mt-5">
+                <div class="col-md-10 mx-auto">
+                    <img src="../Others/images/Context_model.png" alt="System Context Diagram for NavPark" class="img-fluid rounded shadow-sm">
+                    <p class="text-center mt-3 font-italic">Figure: NavPark System Context Diagram</p>
+                </div>
+            </div>
+            <div class="row mt-4">
+    <div class="col-md-12">
+        <p>The main external and internal components interacting with the Smart Parking System are:</p>
+        <ul>
+            <li><strong>User Account System:</strong> Manages user login and preferences such as walking distance, EV charging needs, and cost sensitivity. These preferences are used by the Recommendation Model to personalize suggestions.</li>
+            <li><strong>Routing System (OpenStreetMap API):</strong> Generates optimal routes from the user's location to the selected parking spot. Provides ETA data which is used by the Prediction Model to forecast availability.</li>
+            <li><strong>Prediction Model:</strong> Uses historical parking and traffic data to predict availability of parking spots at the user's estimated arrival time. It does not use live traffic data.</li>
+            <li><strong>Recommendation Model:</strong> Filters and ranks parking options based on predicted availability, user preferences, and proximity, ensuring the most relevant parking options are shown.</li>
+            <li><strong>Traffic Prediction Model:</strong> Analyzes historical traffic flow patterns to help the Prediction Model improve the accuracy of availability forecasts. It does not use live traffic feeds.</li>
+            <li><strong>Map System:</strong> Displays an interactive map interface with base map tiles, route lines, traffic zones, and parking spot markers, helping users visually explore and select parking options.</li>
+        </ul>
+    </div>
+    </div>
+        </div>
+
+        
+    
+    </section>
+
+
+
+        <!-- use case -->
+    <section id="UC" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Use Case and Activity Diagram</h6>
+            <h7 class="text-center">This section provides a detailed breakdown of each functional requirement, with a dedicated Use Case and Activity Diagram for every sub-point to model the system's behavior with maximum granularity.</h7>
+            <br>
+
+            <!-- =================================================================== -->
+            <!-- FR: general overview of the functional requirements -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr1">
+            <h5 class="text-center mb-4">General 
+                    Overview of Functional Requirements</h5>
+            
+            <div class="row mt-4 align-items-top">
+                
+                    
+                    <img src="../Others/images/genusecase.webp" alt="Use Case for FR 1" class="img-fluid rounded shadow-sm">
+               
+                
+            </div>
+
+
+            <!-- Functional Requirements Overview Table -->
+            <div class="table-responsive mb-5 row mt-5">
+                <table class="table table-bordered table-striped text-center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Associated FR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Interactive Map</td>
+                            <td>Users shall be able to view and interact with an interactive map.</td>
+                            <td><a href="#fr1">FR 1</a></td>
+                        </tr>
+                        <tr>
+                            <td>Visual Availability</td>
+                            <td>Users shall be able to visually understand parking availability and legend.</td>
+                            <td><a href="#fr2">FR 2</a></td>
+                        </tr>
+                        <tr>
+                            <td>Destination Input</td>
+                            <td>Users shall be able to input their location or destination using various methods.</td>
+                            <td><a href="#fr3">FR 3</a></td>
+                        </tr>
+                        <tr>
+                            <td>Parking and Route Display</td>
+                            <td>The map shall display nearby parking lots and recommend optimized routes.</td>
+                            <td><a href="#fr4">FR 4</a></td>
+                        </tr>
+                        <tr>
+                            <td>Parking Lot Details</td>
+                            <td>Users shall be able to view comprehensive detailed information about each parking lot.</td>
+                            <td><a href="#fr5">FR 5</a></td>
+                        </tr>
+                        <tr>
+                            <td>App Customization</td>
+                            <td>Users shall be able to customize app behavior and display preferences.</td>
+                            <td><a href="#fr6">FR 6</a></td>
+                        </tr>
+                        <tr>
+                            <td>Account Creation</td>
+                            <td>Users shall be able to create an account, requiring specific personal and car details.</td>
+                            <td><a href="#fr7">FR 7</a></td>
+                        </tr>
+                        <tr>
+                            <td>Schedule Navigation</td>
+                            <td>Users shall be able to schedule navigation and receive time-based parking recommendations.</td>
+                            <td><a href="#fr8">FR 8</a></td>
+                        </tr>
+                        <tr>
+                            <td>Notifications</td>
+                            <td>Users shall be notified when important information or changes occur.</td>
+                            <td><a href="#fr9">FR 9</a></td>
+                        </tr>
+                        <tr>
+                            <td>Provide Feedback</td>
+                            <td>Users shall be able to provide feedback on various aspects of the app.</td>
+                            <td><a href="#fr10">FR 10</a></td>
+                        </tr>
+                        <tr>
+                            <td>Privacy Configuration</td>
+                            <td>Users shall be able to configure their privacy settings.</td>
+                            <td><a href="#fr11">FR 11</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+            <!-- =================================================================== -->
+            <!-- FR 1: Users shall be able to see an interactive map when they open the application. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr1">
+            <h5 class="text-center mb-4">FR 1: Users shall be able to see an interactive map when they open the application.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver opening the app and viewing the interactive map interface.</p>
+                    <img src="../Others/images/FR1_uc.png" alt="Use Case for FR 1" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the flow from app launch to displaying the interactive map to the user.</p>
+                    <img src="../Others/images/FR1_AC.png" alt="Activity Diagram for FR 1" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 1.1: Users shall be able to interact with parking lots on the map to view detailed information. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 1.1: Users shall be able to interact with parking lots on the map to view detailed information.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver tapping a parking lot icon to view detailed information about that parking lot.</p>
+                    <img src="../Others/images/FR1.1_uc.png" alt="Use Case for FR 1.1" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the flow from the user tapping a parking lot icon to the system displaying a detailed information panel.</p>
+                    <img src="../Others/images/FR1.1_ACpng.png" alt="Activity Diagram for FR 1.1" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 1.2: The system shall display roads in different colors—grey, orange, and green—to indicate varying traffic conditions. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 1.2: The system shall display roads in different colors—grey, orange, and green—to indicate varying traffic conditions.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver viewing the map with roads color-coded to indicate current traffic conditions.</p>
+                    <img src="../Others/images/FR1.2_uc.png" alt="Use Case for FR 1.2" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Models the system fetching traffic data and rendering roads in grey, orange, or green based on traffic status.</p>
+                    <img src="../Others/images/FR1.2AC.png" alt="Activity Diagram for FR 1.2" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 2: Users shall be able to visually understand parking availability using a color-coded system (green, yellow, red). -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr2">
+            <h5 class="text-center mb-4">FR 2: Users shall be able to visually understand parking availability using a color-coded system (green, yellow, red).</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver viewing parking lots on the map with color codes representing availability (green, yellow, red).</p>
+                    <img src="../Others/images/FR2_ucn.png" alt="Use Case for FR 2" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the system assigning and displaying color codes to parking lots based on real-time availability.</p>
+                    <img src="../Others/images/FR2_ACn.png" alt="Activity Diagram for FR 2" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 2.1: Users shall be able to view a legend explaining the color codes for both traffic and parking availability. -->
+            <!-- =================================================================== -->
+            <hr class="my-5">
+            <h5 class="text-center mb-4">FR 2.1: Users shall be able to view a legend explaining the color codes for both traffic and parking availability.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver accessing a legend to understand the meaning of map color codes for traffic and parking.</p>
+                    <img src="../Others/images/FR2.1_uc.png" alt="Use Case for FR 2.1" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Outlines the steps of the user tapping a legend icon or button, and the system displaying the legend overlay.</p>
+                    <img src="../Others/images/FR2.1_AC.png" alt="Activity Diagram for FR 2.1" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 3: Users shall be able to input their current location or travel destination using various methods. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr3">
+            <h5 class="text-center mb-4">FR 3. Users shall be able to input their current location or travel destination using GPS-based detection, map interaction (dropping a pin), address input, or voice commands, as well as save and select from frequently visited destinations for quick access.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver choosing from multiple methods to input their location or destination (GPS, pin, address, voice, or saved places).</p>
+                    <img src="../Others/images/FR3_ucn.png" alt="Use Case for FR 3" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the flow of the user selecting a location input method and the system processing the input accordingly.</p>
+                    <img src="../Others/images/FR3_ACn.png" alt="Activity Diagram for FR 3" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            
+
+            <!-- =================================================================== -->
+            <!-- FR 4: After a destination is input, the map shall zoom in on that area and display all parking lots within a 500-meter radius, recommend an optimized route, and show the shortest path to the nearest parking lot. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr4">
+            <h5 class="text-center mb-4">FR 4: After a destination is input, the map shall zoom in on that area and display all parking lots within a 500-meter radius, recommend an optimized route, and show the shortest path to the nearest parking lot.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver inputting a destination, the system zooming in, displaying nearby parking lots, and recommending both an optimized route and the shortest path to the nearest available parking lot.</p>
+                    <img src="../Others/images/UML_FR4_Use_case_update.webp" alt="Use Case for FR 4" class="img-fluid rounded shadow-sm ">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the flow from destination input, map zoom, fetching parking lots, and displaying both the recommended and shortest routes.</p>
+                    <img src="../Others/images/FR4activity.webp" alt="Activity Diagram for FR 4" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 5: Users shall be able to view detailed information about each parking lot, including opening hours, parking costs, expected availability, and estimated travel time. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr5">
+            <h5 class="text-center mb-4">FR 5: Users shall be able to view detailed information about each parking lot, including opening hours, parking costs, expected availability, and estimated travel time.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver selecting a parking lot to view its opening hours, costs, expected availability by hour, and estimated travel time from their location.</p>
+                    <img src="../Others/images/5usenew.webp" alt="Use Case for FR 5" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user selecting a parking lot and the system displaying all relevant details.</p>
+                    <img src="../Others/images/FR5_AC.png" alt="Activity Diagram for FR 5" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 6: Users shall be able to customize app behavior and display (price range, distance, notifications, language). -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr6">
+            <h5 class="text-center mb-4">FR 6: Users shall be able to customize app behavior and display, including preferred price range, distance, notifications, and language.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver accessing settings to set preferred price range, distance from destination, notification preferences, and interface language.</p>
+                    <img src="../Others/images/6usenew.webp" alt="Use Case for FR 6" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the flow of the user customizing app settings and the system applying these preferences.</p>
+                    <img src="../Others/images/FR6_AC.png" alt="Activity Diagram for FR 6" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 7: Users shall be able to create an account with required information and agree to terms. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr7">
+            <h5 class="text-center mb-4">FR 7: Users shall be able to create an account requiring a username, phone number, password, car information, and agreement to terms and conditions.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver registering an account, providing required information, and agreeing to terms and conditions regarding data collection.</p>
+                    <img src="../Others/images/7usenew.webp" alt="Use Case for FR 7" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the registration process, including data entry and terms acceptance.</p>
+                    <img src="../Others/images/FR7_AC.png" alt="Activity Diagram for FR 7" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+            <!-- =================================================================== -->
+            <!-- FR 8: Users shall be able to schedule navigation to begin at a selected time and input a future arrival time. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr8">
+            <h5 class="text-center mb-4">FR 8: Users shall be able to schedule navigation to begin at a selected time and input a future arrival time to receive parking recommendations.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver scheduling navigation or inputting a future arrival time to get parking recommendations and set a delayed start.</p>
+                    <img src="../Others/images/8usenew.webp" alt="Use Case for FR 8" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Details the process of scheduling navigation and the system providing recommendations based on the selected time.</p>
+                    <img src="../Others/images/FR8_AC.png" alt="Activity Diagram for FR 8" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 9: Users shall be notified when important information needs reporting (parking lot full, availability changes, closer lot, better route). -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr9">
+            <h5 class="text-center mb-4">FR 9: Users shall be notified when important information needs reporting, such as parking lot status, availability changes, closer lots, or better routes.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver receiving notifications for events like a parking lot becoming full, availability changes, a closer lot opening, or a better route being found.</p>
+                    <img src="../Others/images/9usecase2.webp" alt="Use Case for FR 9" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the system monitoring parking and traffic data and sending timely notifications to the user.</p>
+                    <img src="../Others/images/act9new.webp" alt="Activity Diagram for FR 9" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            
+            
+
+            <!-- =================================================================== -->
+            <!-- FR 10: Users shall be able to provide feedback about the app, including incorrect traffic or parking information, parking lot details, and feature suggestions. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr10">
+            <h5 class="text-center mb-4">FR 10: Users shall be able to provide feedback about the app, including incorrect traffic or parking information, parking lot details, and feature suggestions.</h5>
+        
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver submitting feedback through the app interface.</p>
+                    <br>
+                    <img src="../Others/images/10usenew.webp" alt="Use Case for FR 10" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user entering feedback and the system confirming receipt.</p>
+                    <img src="../Others/images/FR10_AC.png" alt="Activity Diagram for FR 10" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- FR 11: Users shall be able to configure privacy settings to their own likings. -->
+            <!-- =================================================================== -->
+            <hr class="my-5" id="fr11">
+       <h5 class="text-center mb-4">FR 11. Users shall be able to configure privacy settings according to their preferences, including requesting the deletion of their parking history or account, changing their password easily, and enabling GPS only when the app is open.</h5>
+            <div class="row mt-4 align-items-top">
+                <div class="col-md-6 mb-4">
+                    <h6>Use Case Diagram</h6>
+                    <p>Shows the Driver accessing privacy settings to manage account, history, password, and GPS preferences.</p>
+                    <img src="../Others/images/11use.png" alt="Use Case for FR 11" class="img-fluid rounded shadow-sm">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Activity Diagram</h6>
+                    <p>Describes the process of the user configuring privacy options and the system applying these changes.</p>
+                    <img src="../Others/images/fr11activity.webp" alt="Activity Diagram for FR 11" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sequence Diagram Section -->
+    <section id="sequence-diagrams" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Sequence Diagrams</h6>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h5 class="mb-3">Route Navigation</h5>
+                    <h7>The diagram shows NavPark's route navigation flow. The user inputs a destination, triggering the system to fetch parking availability predictions and traffic data. NavPark then calculates the optimal route using these inputs, supported by prediction models and map data, ensuring efficient navigation with parking considerations.</h7>
+                    <br>
+                    <br>
+                    <div class="text-center">
+                        <img src="../Others/images/routenav_SQ.png" alt="Route Navigation Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Route Navigation</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h5 class="mb-3">Scheduled Departure with Notification Reminder</h5>
+                    <h7>The diagram shows NavPark's scheduled departure reminder feature. The user inputs a departure time, prompting NavPark to schedule a reminder and set a push notification 10 minutes before departure. The Time Scheduler (Notification Center) handles the timed notification delivery to remind the user when to leave.</h7>
+                    <br>
+                    <br>
+                    <div class="text-center">
+                        <img src="../Others/images/schdep_SQ.png" alt="Scheduled Departure Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Scheduled Departure Reminder</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h5 class="mb-3">Future Vacancy Prediction</h5>
+                    <h7>The diagram illustrates NavPark's future vacancy prediction feature. The user inputs an arrival time, triggering NavPark to predict parking availability and traffic conditions for that future time. The system then displays the predicted parking lots and traffic data to the user, leveraging the Parking Lot Prediction Model and Traffic Prediction Model for accurate forecasts.</h7>
+                    <br>
+                    <br>
+                    <div class="text-center">
+                        <img src="../Others/images/Future_SQ.png" alt="Future Vacancy Prediction Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Future Vacancy Prediction</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h5 class="mb-3">Arrival Notification</h5>
+                    <h7>The diagram shows NavPark's arrival notification flow. When the user starts navigation, NavPark tracks their location via GPS. Upon detecting arrival near a parking lot, it triggers an arrival notification through the Notification Center, which then sends a summary to the user.</h7>
+                    <br>
+                    <br>
+                    <div class="text-center">
+                        <img src="../Others/images/Arrnot_SQ.png" alt="Arrival Notification Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Arrival Notification</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h5 class="mb-3">Parking Lot Profile</h5>
+                    <h7>This diagram illustrates the Parking Lot Profile feature. When a user clicks on a parking lot, NavPark returns the detailed information for that specific parking lot, including availability, pricing, hours, and other relevant details.</h7>
+                    <br>
+                    <br>    
+                    <div class="text-center">
+                        <img src="../Others/images/parkingLotProfile.png" alt="Parking Lot Profile Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Parking Lot Profile</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h5 class="mb-3">Loads preferences after user logs in</h5>
+                    <h7>This diagram models the flow for when a user opens NavPark, logs in with proper credentials, and accesses their saved preferences automatically. It shows how the user interacts with both the login and preference systems, including the coordination between UI, logic, and data storage components.</h7>
+                    <br>
+                    <br>
+                    <div class="text-center">
+                        <img src="../Others/images/loginpef.png" alt="Scheduled Departure Sequence Diagram" class="img-fluid rounded shadow-sm">
+                        <p class="text-center mt-2 font-italic">Figure: Sequence Diagram for Scheduled Departure Reminder</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wireframe Section -->
+    <section id="wireframes" class="section">
+        <div class="container">
+            <h6 class="section-title text-center">Wireframes</h6>
+            <div class="row mt-5">
+                <div class="col-md-12 mb-5">
+                    <h5>1. Main UI</h5>
+                    <h7>This is the main UI of NavPark containing a map of Yau Tsim Mong with road congestions of major streets shown with the colors red, yellow, and green, with red representing bad traffic, yellow representing mild traffic, and green representing no traffic. Once a user drops a red pin on the map indicating the destination they want to reach, a blue route will appear, leading the user to the closest vacant parking lot. A black, dotted line appears from the parking lot to the final destination which shows the walking route. Finally, as this is the start of the navigation, a notification appears at the top of the screen.</h7>
+                    <br>
+                    <br>
+                    <div class="text-center">
+                        <img src="../Others/images/mainUI.png" alt="Main UI Wireframe" class="img-fluid rounded shadow-sm mb-3">
+                    </div>
+                </div>
+                <div class="col-md-12 mb-5">
+                    <h5>2. Settings Page</h5>
+                    <h7>This is the settings page, including a preferences and account settings section. The preferences can be adjusted to fit the users' desired driving distance, walking distance, maximum parking fee, and finally whether they want GPS to be turned on. The preferences chosen here will affect the recommended parking lot. Furthermore, the account settings section deals with the user wanting to change their password of their account, the user wanting to delete their parking history, and the user wanting to delete their account. The deletion of the parking history and account is written in red as these actions can not be reverted, hence the user must think wisely before carrying this out.</h7>
+                    <br>
+                    <br>
+                    <div class="text-center">
+                        <img src="../Others/images/setting.png" alt="Settings Wireframe" class="img-fluid rounded shadow-sm mb-3">
+                    </div>
+                </div>
+                <div class="col-md-12 mb-5">
+                    <h5>3. Notifications</h5>
+                    <h7>This shows notifications a user may receive when using the application. The bottom notification may appear if a closer vacant parking lot appears, and the top notification will appear once the user has reached the notification.</h7>
+                    <br>
+                    <br>
+                    <div class="text-center">
+                        <img src="../Others/images/notifi.png" alt="Notifications Wireframe" class="img-fluid rounded shadow-sm mb-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core JavaScript -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+</body>
+</html>
